@@ -1,3 +1,39 @@
 <resources>
     <string name="app_name">Housekeeping</string>
+    <string name="home">Home</string>
+    <string name="account">Account</string>
+    <string name="items_list">Oggetti</string>
+
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="repeat_password">Ripeti la password</string>
+
+    <string name="login">Login</string>
+    <string name="first_access">È il tuo primo accesso?</string>
+    <string name="sign_up">Registrati</string>
+    <string name="forgot_password">Hai dimenticato la password?</string>
+    <string name="error">È stato riscontrato un errore</string>
+    <string name="recovery_email">È stata inviata una mail per il reset della password all\'indirizzo indicato</string>
+
+    <string name="error_in_splash_screen">È stato riscontrato un errore nell\'inizializzazione</string>
+
+    <string name="welcome">Benvenuti in Housekeeping!</string>
+
+    <string name="welcome_description">L\'app che ti permette di tenere traccia delle cose importanti della casa</string>
+
+    <string name="create_account">Crea account</string>
+
+    <string name="notification_permission_title">Permesso per le notifiche push</string>
+    <string name="notification_permission_rationale">Le notifiche push sono utilizzate per indicare quando un alimento inserito sta per scadere</string>
+    <string name="notification_permissions_button">Richiedi il permesso</string>
+
+    <string name="blank_email">Il campo email non può essere vuoto</string>
+    <string name="blank_password">Il campo password non può essere vuoto</string>
+    <string name="password_not_corresponding">Le due password non coincidono</string>
+
+    <string name="login_error">È stato riscontrato un errore durante il login.</string>
+    <string name="account_creation">Registro l\'account...</string>
+    <string name="account_created">Account creato correttamente</string>
+
+    <string name="authenticating">Autenticazione...</string>
 </resources>

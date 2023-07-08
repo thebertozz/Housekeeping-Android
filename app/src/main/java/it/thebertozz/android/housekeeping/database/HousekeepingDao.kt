@@ -5,7 +5,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
 import it.thebertozz.android.housekeeping.models.Container
-import it.thebertozz.android.housekeeping.models.Inventory
+import it.thebertozz.android.housekeeping.models.InventoryItem
 import it.thebertozz.android.housekeeping.models.Item
 
 @Dao
@@ -18,9 +18,9 @@ interface HousekeepingDao {
 
     @Transaction
     @Query("SELECT * FROM container")
-    suspend fun getAll(): List<Inventory>
+    suspend fun getAll(): List<InventoryItem>
 
     @Transaction
     @Query("SELECT * FROM container WHERE id = :id")
-    suspend fun getByContainerId(id: String): Inventory
+    suspend fun getByContainerId(id: String): InventoryItem
 }

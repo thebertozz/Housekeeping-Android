@@ -3,7 +3,7 @@ package it.thebertozz.android.housekeeping.models
 import androidx.room.Embedded
 import androidx.room.Relation
 
-data class Inventory(
+data class InventoryItem(
     @Embedded
     val container: Container,
     @Relation(

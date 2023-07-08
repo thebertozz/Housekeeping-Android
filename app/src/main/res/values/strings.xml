@@ -36,4 +36,9 @@
     <string name="account_created">Account creato correttamente</string>
 
     <string name="authenticating">Autenticazione...</string>
+
+    <string name="save_test_container">"Save test container"</string>
+    <string name="save_test_item">"Save test item"</string>
+    <string name="get_all_items">"Get all items"</string>
+
 </resources>

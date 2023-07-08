@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "553963172440",
+    "project_id": "housekeeping-app-89811",
+    "storage_bucket": "housekeeping-app-89811.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:553963172440:android:c8be60ac5e5747139d102d",
+        "android_client_info": {
+          "package_name": "it.thebertozz.android.housekeeping"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "553963172440-2bu10rm4vojc1dmna3foja4n5kctqaq2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAu3Sqj-YN86K8zQHH7Pn1leNJ54rTWKQg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "553963172440-2bu10rm4vojc1dmna3foja4n5kctqaq2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

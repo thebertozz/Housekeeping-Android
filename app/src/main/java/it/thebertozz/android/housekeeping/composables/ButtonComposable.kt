@@ -8,14 +8,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun BasicTextButton(@StringRes text: Int, modifier: Modifier, action: () -> Unit) {
+fun SimpleTextButton(@StringRes text: Int, modifier: Modifier, action: () -> Unit) {
     TextButton(onClick = action, modifier = modifier) {
         Text(text = stringResource(text))
     }
 }
 
 @Composable
-fun BasicButton(@StringRes text: Int, modifier: Modifier, action: () -> Unit) {
+fun SimpleButton(@StringRes text: Int, modifier: Modifier, action: () -> Unit) {
     Button(
         onClick = action,
         modifier = modifier,

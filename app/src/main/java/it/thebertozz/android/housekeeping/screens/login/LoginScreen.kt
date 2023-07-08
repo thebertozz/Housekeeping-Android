@@ -16,10 +16,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import it.thebertozz.android.housekeeping.composables.BasicButton
-import it.thebertozz.android.housekeeping.composables.BasicTextButton
-import it.thebertozz.android.housekeeping.composables.EmailField
-import it.thebertozz.android.housekeeping.composables.PasswordField
+import it.thebertozz.android.housekeeping.composables.SimpleButton
+import it.thebertozz.android.housekeeping.composables.SimpleTextButton
+import it.thebertozz.android.housekeeping.composables.EmailTextField
+import it.thebertozz.android.housekeeping.composables.PasswordTextField
 import it.thebertozz.android.housekeeping.R
 import it.thebertozz.android.housekeeping.composables.BasicToolbar
 
@@ -57,16 +57,17 @@ fun LoginScreen(
 
         Divider(color = Color.Transparent)
 
-        EmailField(uiState.email, viewModel::onEmailChange,
-            Modifier
-                .fillMaxWidth()
-                .padding(16.dp, 4.dp))
-        PasswordField(uiState.password, viewModel::onPasswordChange,
+        EmailTextField(uiState.email, viewModel::onEmailChange,
             Modifier
                 .fillMaxWidth()
                 .padding(16.dp, 4.dp))
 
-        BasicButton(R.string.login,
+        PasswordTextField(uiState.password, viewModel::onPasswordChange,
+            Modifier
+                .fillMaxWidth()
+                .padding(16.dp, 4.dp))
+
+        SimpleButton(R.string.login,
             Modifier
                 .fillMaxWidth()
                 .padding(16.dp, 8.dp)) {
@@ -79,14 +80,14 @@ fun LoginScreen(
             .padding(16.dp, 16.dp)
             .align(Alignment.CenterHorizontally), fontSize = 16.sp)
 
-        BasicButton(R.string.sign_up,
+        SimpleButton(R.string.sign_up,
             Modifier
                 .fillMaxWidth()
                 .padding(16.dp, 8.dp)) {
             viewModel.onSignUpClick(navigation)
         }
 
-        BasicTextButton(R.string.forgot_password,
+        SimpleTextButton(R.string.forgot_password,
             Modifier
                 .fillMaxWidth()
                 .padding(16.dp, 8.dp, 16.dp, 0.dp)) {

@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.ExtendedFloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
@@ -17,6 +18,7 @@ import androidx.compose.material.SnackbarHost
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.rememberScaffoldState
@@ -32,10 +34,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
@@ -44,6 +48,7 @@ import it.thebertozz.android.housekeeping.composables.commons.PermissionDialog
 import it.thebertozz.android.housekeeping.composables.commons.PermissionRationaleDialog
 import it.thebertozz.android.housekeeping.managers.SnackbarManager
 import it.thebertozz.android.housekeeping.screens.account.AccountScreen
+import it.thebertozz.android.housekeeping.screens.detail.DetailScreen
 import it.thebertozz.android.housekeeping.screens.home.HomeScreen
 import it.thebertozz.android.housekeeping.screens.login.LoginScreen
 import it.thebertozz.android.housekeeping.screens.signup.SignUpScreen
@@ -66,6 +71,15 @@ fun HousekeepingApp() {
             val currentScreen = navBackStackEntry?.destination
 
             Scaffold(
+                floatingActionButton = {
+                    if (appState.shouldShowFloatingActionBar) {
+                        ExtendedFloatingActionButton(
+                            text = { Text(text = "Nuovo contenitore") },
+                            onClick = { },
+                            icon = { Icon(Icons.Filled.AddCircle, "") }
+                        )
+                    }
+                },
                 bottomBar = {
                     if (appState.shouldShowBottomBar) {
                         BottomNavigation {
@@ -152,11 +166,20 @@ fun NavGraphBuilder.housekeepingGraph(appState: HouseKeepingAppState) {
         )
     }
 
+    composable("$DETAIL_SCREEN/{containerId}", arguments = listOf(navArgument("containerId") {NavType.StringType})) {
+        backStackEntry ->
+        DetailScreen(
+            backStackEntry.arguments?.getString("containerId") ?: "",
+            navigation = { route, popUp -> appState.manageNavigation(route, popUp) }
+        )
+    }
+
     composable(ACCOUNT_SCREEN) {
         AccountScreen(
             navigation = { route, popUp -> appState.manageNavigation(route, popUp) }
         )
     }
+
 }
 
 @RequiresApi(Build.VERSION_CODES.TIRAMISU)

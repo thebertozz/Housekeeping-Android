@@ -32,7 +32,7 @@ fun BasicField(
 }
 
 @Composable
-fun EmailField(value: String, onNewValue: (String) -> Unit, modifier: Modifier = Modifier) {
+fun EmailTextField(value: String, onNewValue: (String) -> Unit, modifier: Modifier = Modifier) {
     OutlinedTextField(
         singleLine = true,
         modifier = modifier,
@@ -44,17 +44,17 @@ fun EmailField(value: String, onNewValue: (String) -> Unit, modifier: Modifier =
 }
 
 @Composable
-fun PasswordField(value: String, onNewValue: (String) -> Unit, modifier: Modifier = Modifier) {
-    PasswordField(value, R.string.password, onNewValue, modifier)
+fun PasswordTextField(value: String, onNewValue: (String) -> Unit, modifier: Modifier = Modifier) {
+    PasswordTextField(value, R.string.password, onNewValue, modifier)
 }
 
 @Composable
 fun RepeatPasswordField(value: String, onNewValue: (String) -> Unit, modifier: Modifier = Modifier) {
-    PasswordField(value, R.string.repeat_password, onNewValue, modifier)
+    PasswordTextField(value, R.string.repeat_password, onNewValue, modifier)
 }
 
 @Composable
-private fun PasswordField(
+private fun PasswordTextField(
     value: String,
     @StringRes placeholder: Int,
     onNewValue: (String) -> Unit,
@@ -81,5 +81,17 @@ private fun PasswordField(
         },
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
         visualTransformation = visualTransformation
+    )
+}
+
+@Composable
+fun NormalTextField(value: String, onNewValue: (String) -> Unit, @StringRes placeholder: Int, modifier: Modifier = Modifier) {
+    OutlinedTextField(
+        singleLine = true,
+        modifier = modifier,
+        value = value,
+        onValueChange = { onNewValue(it) },
+        placeholder = { Text(stringResource(id = placeholder)) },
+        leadingIcon = { Icon(imageVector = Icons.Default.Email, contentDescription = "Email") }
     )
 }

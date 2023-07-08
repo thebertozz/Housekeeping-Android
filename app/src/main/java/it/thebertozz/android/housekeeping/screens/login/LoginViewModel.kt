@@ -68,7 +68,7 @@ class LoginViewModel: ViewModel() {
     }
 
     fun onSignUpClick(navigation: (String, String?) -> Unit) {
-        viewModelScope.launch() {
+        viewModelScope.launch {
             navigation(SIGN_UP_SCREEN, null)
         }
     }

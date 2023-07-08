@@ -4,6 +4,10 @@
     <string name="account">Account</string>
     <string name="items_list">Oggetti</string>
 
+    <string name="save">Salva</string>
+
+    <string name="container_detail">Dettaglio contenitore</string>
+
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="repeat_password">Ripeti la password</string>
@@ -40,5 +44,8 @@
     <string name="save_test_container">"Save test container"</string>
     <string name="save_test_item">"Save test item"</string>
     <string name="get_all_items">"Get all items"</string>
+
+    <string name="item_name">Nome</string>
+    <string name="item_type">Tipologia</string>
 
 </resources>

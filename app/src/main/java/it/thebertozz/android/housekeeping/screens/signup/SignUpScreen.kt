@@ -9,10 +9,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import it.thebertozz.android.housekeeping.R
-import it.thebertozz.android.housekeeping.composables.BasicButton
+import it.thebertozz.android.housekeeping.composables.SimpleButton
 import it.thebertozz.android.housekeeping.composables.BasicToolbar
-import it.thebertozz.android.housekeeping.composables.EmailField
-import it.thebertozz.android.housekeeping.composables.PasswordField
+import it.thebertozz.android.housekeeping.composables.EmailTextField
+import it.thebertozz.android.housekeeping.composables.PasswordTextField
 import it.thebertozz.android.housekeeping.composables.RepeatPasswordField
 
 @Composable
@@ -36,11 +36,11 @@ fun SignUpScreen(
     verticalArrangement = Arrangement.Center,
     horizontalAlignment = Alignment.CenterHorizontally
   ) {
-    EmailField(uiState.email, viewModel::onEmailChange, fieldModifier)
-    PasswordField(uiState.password, viewModel::onPasswordChange, fieldModifier)
+    EmailTextField(uiState.email, viewModel::onEmailChange, fieldModifier)
+    PasswordTextField(uiState.password, viewModel::onPasswordChange, fieldModifier)
     RepeatPasswordField(uiState.repeatPassword, viewModel::onRepeatPasswordChange, fieldModifier)
 
-    BasicButton(R.string.create_account,
+    SimpleButton(R.string.create_account,
       Modifier
         .fillMaxWidth()
         .padding(16.dp, 8.dp)) {

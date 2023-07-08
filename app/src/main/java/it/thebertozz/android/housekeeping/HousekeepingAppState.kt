@@ -21,9 +21,15 @@ class HouseKeepingAppState(
 
     private val bottomBarRoutes = arrayListOf(HOME_SCREEN, ACCOUNT_SCREEN)
 
+    private val floatingActionBarRoutes = arrayListOf(HOME_SCREEN)
+
     val shouldShowBottomBar: Boolean
         @Composable get() = navController
             .currentBackStackEntryAsState().value?.destination?.route in bottomBarRoutes
+
+    val shouldShowFloatingActionBar: Boolean
+        @Composable get() = navController
+            .currentBackStackEntryAsState().value?.destination?.route in floatingActionBarRoutes
 
     init {
         coroutineScope.launch {

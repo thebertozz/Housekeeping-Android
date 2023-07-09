@@ -131,8 +131,8 @@ fun HomeScreen(
             ) { result ->
                 // Qui puoi gestire il risultato ottenuto dall'Activity TensorFlowActivity
                 if (result.resultCode == Activity.RESULT_OK) {
-                    val data: Intent? = result.data
-                    // Esegui le operazioni desiderate con il risultato
+                    val selectedObject = result.data?.getStringExtra("object")
+                    print("selected object: $selectedObject")
                 }
             }
 

@@ -48,4 +48,7 @@
     <string name="item_name">Nome</string>
     <string name="item_type">Tipologia</string>
 
+    <string name="camera_permissions">È necessario fornire i permessi per la fotocamera per aggiungere un nuovo contenitore</string>
+    <string name="camera_error">Errore nell\'inizializzazione della fotocamera</string>
+
 </resources>

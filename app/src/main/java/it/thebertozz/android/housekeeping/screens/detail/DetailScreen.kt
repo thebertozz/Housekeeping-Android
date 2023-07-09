@@ -19,9 +19,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import it.thebertozz.android.housekeeping.R
-import it.thebertozz.android.housekeeping.composables.BasicToolbar
-import it.thebertozz.android.housekeeping.composables.NormalTextField
-import it.thebertozz.android.housekeeping.composables.SimpleButton
+import it.thebertozz.android.housekeeping.utils.BasicToolbar
+import it.thebertozz.android.housekeeping.utils.NormalTextField
+import it.thebertozz.android.housekeeping.utils.SimpleButton
 
 @Composable
 fun DetailScreen(
@@ -34,7 +34,9 @@ fun DetailScreen(
 
     viewModel.getSelectedContainer(containerId ?: "")
 
-    Scaffold {
+    Scaffold(
+        topBar = { BasicToolbar(R.string.container_detail) }
+    ) {
         paddingValues ->
 
         Column(modifier = modifier
@@ -44,7 +46,6 @@ fun DetailScreen(
             .padding(paddingValues),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally) {
-            BasicToolbar(R.string.container_detail)
 
             Text("Aggiungi nuovo oggetto")
             NormalTextField(value = detailUiState.newItemName, onNewValue = viewModel::onItemNameChange, placeholder = R.string.item_name)

@@ -9,11 +9,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import it.thebertozz.android.housekeeping.R
-import it.thebertozz.android.housekeeping.composables.SimpleButton
-import it.thebertozz.android.housekeeping.composables.BasicToolbar
-import it.thebertozz.android.housekeeping.composables.EmailTextField
-import it.thebertozz.android.housekeeping.composables.PasswordTextField
-import it.thebertozz.android.housekeeping.composables.RepeatPasswordField
+import it.thebertozz.android.housekeeping.utils.SimpleButton
+import it.thebertozz.android.housekeeping.utils.BasicToolbar
+import it.thebertozz.android.housekeeping.utils.EmailTextField
+import it.thebertozz.android.housekeeping.utils.PasswordTextField
+import it.thebertozz.android.housekeeping.utils.RepeatPasswordField
 
 @Composable
 fun SignUpScreen(

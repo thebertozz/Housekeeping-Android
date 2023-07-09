@@ -1,4 +1,4 @@
-package it.thebertozz.android.housekeeping.composables
+package it.thebertozz.android.housekeeping.utils
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.*

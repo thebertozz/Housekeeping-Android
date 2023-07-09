@@ -1,4 +1,4 @@
-package it.thebertozz.android.housekeeping.composables.commons
+package it.thebertozz.android.housekeeping.utils.commons
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding

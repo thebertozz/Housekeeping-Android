@@ -3,6 +3,8 @@ package it.thebertozz.android.housekeeping
 import android.Manifest
 import android.content.res.Resources
 import android.os.Build
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.BottomNavigation
@@ -25,6 +27,7 @@ import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
@@ -44,8 +47,8 @@ import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
 import com.google.accompanist.permissions.shouldShowRationale
-import it.thebertozz.android.housekeeping.composables.commons.PermissionDialog
-import it.thebertozz.android.housekeeping.composables.commons.PermissionRationaleDialog
+import it.thebertozz.android.housekeeping.utils.commons.PermissionDialog
+import it.thebertozz.android.housekeeping.utils.commons.PermissionRationaleDialog
 import it.thebertozz.android.housekeeping.managers.SnackbarManager
 import it.thebertozz.android.housekeeping.screens.account.AccountScreen
 import it.thebertozz.android.housekeeping.screens.detail.DetailScreen
@@ -56,6 +59,7 @@ import it.thebertozz.android.housekeeping.screens.splash.SplashScreen
 import it.thebertozz.android.housekeeping.ui.theme.HousekeepingTheme
 import kotlinx.coroutines.CoroutineScope
 
+@OptIn(ExperimentalPermissionsApi::class)
 @Composable
 @ExperimentalMaterialApi
 fun HousekeepingApp() {
@@ -71,15 +75,6 @@ fun HousekeepingApp() {
             val currentScreen = navBackStackEntry?.destination
 
             Scaffold(
-                floatingActionButton = {
-                    if (appState.shouldShowFloatingActionBar) {
-                        ExtendedFloatingActionButton(
-                            text = { Text(text = "Nuovo contenitore") },
-                            onClick = { },
-                            icon = { Icon(Icons.Filled.AddCircle, "") }
-                        )
-                    }
-                },
                 bottomBar = {
                     if (appState.shouldShowBottomBar) {
                         BottomNavigation {
@@ -166,8 +161,10 @@ fun NavGraphBuilder.housekeepingGraph(appState: HouseKeepingAppState) {
         )
     }
 
-    composable("$DETAIL_SCREEN/{containerId}", arguments = listOf(navArgument("containerId") {NavType.StringType})) {
-        backStackEntry ->
+    composable(
+        "$DETAIL_SCREEN/{containerId}",
+        arguments = listOf(navArgument("containerId") { NavType.StringType })
+    ) { backStackEntry ->
         DetailScreen(
             backStackEntry.arguments?.getString("containerId") ?: "",
             navigation = { route, popUp -> appState.manageNavigation(route, popUp) }

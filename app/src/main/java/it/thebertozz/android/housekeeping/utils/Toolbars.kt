@@ -1,4 +1,4 @@
-package it.thebertozz.android.housekeeping.composables
+package it.thebertozz.android.housekeeping.utils
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -14,6 +14,7 @@ import androidx.compose.ui.res.stringResource
 @Composable
 fun BasicToolbar(@StringRes title: Int) {
     TopAppBar(
+        //navigationIcon = { Icon(Icons.Default.ArrowBack, contentDescription = "Back button")},
         title = { Text(stringResource(title)) },
         backgroundColor = toolbarColor()
     )

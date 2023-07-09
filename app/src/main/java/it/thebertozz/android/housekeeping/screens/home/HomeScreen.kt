@@ -27,7 +27,6 @@ import androidx.compose.ui.platform.LocalContext
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
-import it.thebertozz.android.housekeeping.objectdetection.CameraActivity
 import it.thebertozz.android.housekeeping.objectdetection.TensorFlowActivity
 
 @OptIn(ExperimentalMaterialApi::class, ExperimentalPermissionsApi::class)

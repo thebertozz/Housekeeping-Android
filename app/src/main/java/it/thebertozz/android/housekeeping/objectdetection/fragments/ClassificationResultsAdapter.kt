@@ -4,12 +4,19 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import it.thebertozz.android.housekeeping.databinding.ItemClassificationResultBinding
+import it.thebertozz.android.housekeeping.objectdetection.CategoryLabelClickListener
 import org.tensorflow.lite.support.label.Category
 import org.tensorflow.lite.task.vision.classifier.Classifications
 import kotlin.math.min
 
-class ClassificationResultsAdapter :
+class ClassificationResultsAdapter(categoryLabelClickListener: CategoryLabelClickListener?) :
     RecyclerView.Adapter<ClassificationResultsAdapter.ViewHolder>() {
+    private var onClickListener: CategoryLabelClickListener? = null
+
+    init {
+        onClickListener = categoryLabelClickListener
+    }
+
     companion object {
         private const val NO_VALUE = "--"
     }
@@ -53,8 +60,18 @@ class ClassificationResultsAdapter :
 
     inner class ViewHolder(private val binding: ItemClassificationResultBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        private var currentLabel: String? = null
+
+        init {
+            itemView.setOnClickListener {
+                currentLabel?.let {
+                    onClickListener?.onLabelSelected(it)
+                }
+            }
+        }
 
         fun bind(label: String?, score: Float?) {
+            currentLabel = label
             with(binding) {
                 tvLabel.text = label ?: NO_VALUE
                 tvScore.text = if (score != null) String.format("%.2f", score) else NO_VALUE

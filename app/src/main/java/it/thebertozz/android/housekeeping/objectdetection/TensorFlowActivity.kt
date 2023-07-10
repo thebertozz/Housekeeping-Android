@@ -34,7 +34,6 @@ class TensorFlowActivity : AppCompatActivity() {
     }
 
     fun setupResultIntent() {
-
         val data = Intent()
         data.putExtra("object", "bookcase")
         setResult(RESULT_OK, data)

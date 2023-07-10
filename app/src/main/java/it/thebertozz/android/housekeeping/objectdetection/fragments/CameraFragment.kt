@@ -26,8 +26,10 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import it.thebertozz.android.housekeeping.R
 import it.thebertozz.android.housekeeping.databinding.FragmentCameraBinding
+import it.thebertozz.android.housekeeping.objectdetection.CategoryLabelClickListener
 import it.thebertozz.android.housekeeping.objectdetection.ImageClassifierHelper
 import org.tensorflow.lite.task.vision.classifier.Classifications
+import java.util.Collections
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -37,6 +39,8 @@ class CameraFragment : Fragment(), ImageClassifierHelper.ClassifierListener {
         private const val TAG = "Image Classifier"
     }
 
+    private var currentClassifications: MutableList<String> = mutableListOf()
+
     private var _fragmentCameraBinding: FragmentCameraBinding? = null
     private val fragmentCameraBinding
         get() = _fragmentCameraBinding
@@ -44,7 +48,11 @@ class CameraFragment : Fragment(), ImageClassifierHelper.ClassifierListener {
     private lateinit var imageClassifierHelper: ImageClassifierHelper
     private lateinit var bitmapBuffer: Bitmap
     private val classificationResultsAdapter by lazy {
-        ClassificationResultsAdapter().apply {
+        ClassificationResultsAdapter(object : CategoryLabelClickListener {
+            override fun onLabelSelected(label: String) {
+                Log.i(TAG, "Selected label: $label")
+            }
+        }).apply {
             updateAdapterSize(imageClassifierHelper.maxResults)
         }
     }
@@ -68,8 +76,6 @@ class CameraFragment : Fragment(), ImageClassifierHelper.ClassifierListener {
     override fun onDestroyView() {
         _fragmentCameraBinding = null
         super.onDestroyView()
-
-        // Shut down our background executor
         cameraExecutor.shutdown()
     }
 
@@ -228,7 +234,8 @@ class CameraFragment : Fragment(), ImageClassifierHelper.ClassifierListener {
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        imageAnalyzer?.targetRotation = fragmentCameraBinding?.viewFinder?.display?.rotation ?: ROTATION_0
+        imageAnalyzer?.targetRotation =
+            fragmentCameraBinding?.viewFinder?.display?.rotation ?: ROTATION_0
     }
 
     // Declare and bind preview, capture and analysis use cases
@@ -247,14 +254,18 @@ class CameraFragment : Fragment(), ImageClassifierHelper.ClassifierListener {
         preview =
             Preview.Builder()
                 .setTargetAspectRatio(AspectRatio.RATIO_4_3)
-                .setTargetRotation(fragmentCameraBinding?.viewFinder?.display?.rotation ?: ROTATION_0)
+                .setTargetRotation(
+                    fragmentCameraBinding?.viewFinder?.display?.rotation ?: ROTATION_0
+                )
                 .build()
 
         // ImageAnalysis. Using RGBA 8888 to match how our models work
         imageAnalyzer =
             ImageAnalysis.Builder()
                 .setTargetAspectRatio(AspectRatio.RATIO_4_3)
-                .setTargetRotation(fragmentCameraBinding?.viewFinder?.display?.rotation ?: ROTATION_0)
+                .setTargetRotation(
+                    fragmentCameraBinding?.viewFinder?.display?.rotation ?: ROTATION_0
+                )
                 .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                 .setOutputImageFormat(ImageAnalysis.OUTPUT_IMAGE_FORMAT_RGBA_8888)
                 .build()
@@ -290,7 +301,7 @@ class CameraFragment : Fragment(), ImageClassifierHelper.ClassifierListener {
         }
     }
 
-    private fun getScreenOrientation() : Int {
+    private fun getScreenOrientation(): Int {
         val outMetrics = DisplayMetrics()
 
         val display: Display?
@@ -329,12 +340,28 @@ class CameraFragment : Fragment(), ImageClassifierHelper.ClassifierListener {
         results: List<Classifications>?,
         inferenceTime: Long
     ) {
-        activity?.runOnUiThread {
-            // Show result on bottom sheet
-            classificationResultsAdapter.updateResults(results)
-            classificationResultsAdapter.notifyDataSetChanged()
-            fragmentCameraBinding?.bottomSheetLayout?.inferenceTimeVal?.text =
-                String.format("%d ms", inferenceTime)
+        if (!results.isNullOrEmpty()) {
+
+            var newClassifications = mutableListOf<String>()
+
+            results.forEach {
+                if (it.categories.size > 0 && it.categories.firstOrNull()?.label != "") {
+                    newClassifications.add(it.categories.first().label)
+                }
+            }
+
+            if (newClassifications.isEmpty()) { newClassifications = currentClassifications}
+
+            if (currentClassifications != newClassifications) {
+                activity?.runOnUiThread {
+                    // Show result on bottom sheet
+                    classificationResultsAdapter.updateResults(results)
+                    classificationResultsAdapter.notifyDataSetChanged()
+                    fragmentCameraBinding?.bottomSheetLayout?.inferenceTimeVal?.text =
+                        String.format("%d ms", inferenceTime)
+                }
+                currentClassifications = newClassifications
+            }
         }
     }
 }

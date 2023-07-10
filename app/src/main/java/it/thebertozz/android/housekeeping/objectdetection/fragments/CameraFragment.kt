@@ -1,6 +1,7 @@
 package it.thebertozz.android.housekeeping.objectdetection.fragments
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.os.Bundle
@@ -13,6 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.AspectRatio
 import androidx.camera.core.Camera
 import androidx.camera.core.CameraSelector
@@ -51,6 +53,10 @@ class CameraFragment : Fragment(), ImageClassifierHelper.ClassifierListener {
         ClassificationResultsAdapter(object : CategoryLabelClickListener {
             override fun onLabelSelected(label: String) {
                 Log.i(TAG, "Selected label: $label")
+                val data = Intent()
+                data.putExtra("object", label)
+                activity?.setResult(AppCompatActivity.RESULT_OK, data)
+                activity?.finishAfterTransition()
             }
         }).apply {
             updateAdapterSize(imageClassifierHelper.maxResults)

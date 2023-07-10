@@ -25,17 +25,9 @@ class TensorFlowActivity : AppCompatActivity() {
         if (Build.VERSION.SDK_INT == Build.VERSION_CODES.Q) {
             // Workaround for Android Q memory leak issue in IRequestFinishCallback$Stub.
             // (https://issuetracker.google.com/issues/139738913)
-            setupResultIntent()
             finishAfterTransition()
         } else {
-            setupResultIntent()
             super.onBackPressed()
         }
-    }
-
-    fun setupResultIntent() {
-        val data = Intent()
-        data.putExtra("object", "bookcase")
-        setResult(RESULT_OK, data)
     }
 }

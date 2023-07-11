@@ -30,4 +30,7 @@ interface HousekeepingDao {
 
     @Delete
     suspend fun delete(vararg container: Container)
+
+    @Query("DELETE FROM container")
+    suspend fun deleteAllContainers()
 }

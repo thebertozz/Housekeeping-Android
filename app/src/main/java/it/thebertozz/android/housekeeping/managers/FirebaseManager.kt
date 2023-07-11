@@ -1,5 +1,6 @@
 package it.thebertozz.android.housekeeping.managers
 
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -10,6 +11,10 @@ object FirebaseManager {
 
     fun getUserId(): String {
         return Firebase.auth.currentUser?.uid.orEmpty()
+    }
+
+    fun getUser(): FirebaseUser? {
+        return Firebase.auth.currentUser
     }
 
     fun authenticate(email: String, password: String, onResult: (Throwable?) -> Unit) {

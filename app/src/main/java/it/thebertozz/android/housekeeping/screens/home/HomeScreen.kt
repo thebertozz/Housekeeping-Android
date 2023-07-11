@@ -170,7 +170,7 @@ fun HomeScreen(
                             viewModel.onDeleteItemConfirmation(homeUiState.selectedContainerForDeletion!!)
                         }, dismissClicked = {
                             viewModel.onDeleteItemDismiss()
-                        })
+                        }, text = R.string.delete_item_confirmation)
                     }
                 }
             }

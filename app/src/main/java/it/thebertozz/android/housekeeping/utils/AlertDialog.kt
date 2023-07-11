@@ -1,5 +1,6 @@
 package it.thebertozz.android.housekeeping.utils
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
@@ -15,7 +16,7 @@ import it.thebertozz.android.housekeeping.R
 import it.thebertozz.android.housekeeping.ui.theme.HousekeepingTheme
 
 @Composable
-fun AlertDialog(confirmClicked: () -> Unit, dismissClicked: () -> Unit) {
+fun AlertDialog(confirmClicked: () -> Unit, @StringRes text: Int, dismissClicked: () -> Unit) {
     HousekeepingTheme {
         Column {
             val openDialog = remember { mutableStateOf(true)  }
@@ -30,7 +31,7 @@ fun AlertDialog(confirmClicked: () -> Unit, dismissClicked: () -> Unit) {
                         Text(text = stringResource(id = R.string.app_name))
                     },
                     text = {
-                        Text(text = stringResource(id = R.string.delete_item_confirmation), fontSize = 16.sp)
+                        Text(text = stringResource(id = text), fontSize = 16.sp)
                     },
                     confirmButton = {
                         Button(

@@ -68,6 +68,10 @@
 
     <string name="your_containers">I tuoi contenitori</string>
 
+    <string name="logout_alert">Vuoi davvero effettuare il logout?</string>
+
+    <string name="logout">Logout</string>
+
     //TF
 
     <string name="alt_bottom_sheet_chevron">Bottom sheet expandable indicator</string>

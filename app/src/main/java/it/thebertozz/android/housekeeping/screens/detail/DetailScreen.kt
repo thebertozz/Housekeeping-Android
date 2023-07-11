@@ -123,7 +123,7 @@ fun DetailScreen(
                 viewModel.onDeleteItemConfirmation(detailUiState.selectedItemForDeletion!!)
             }, dismissClicked = {
                 viewModel.onDeleteItemDismiss()
-            })
+            }, text = R.string.delete_item_confirmation)
         }
     }
 }

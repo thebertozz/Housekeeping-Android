@@ -3,6 +3,8 @@ package it.thebertozz.android.housekeeping.screens.signup
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -15,33 +17,42 @@ import it.thebertozz.android.housekeeping.utils.EmailTextField
 import it.thebertozz.android.housekeeping.utils.PasswordTextField
 import it.thebertozz.android.housekeeping.utils.RepeatPasswordField
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SignUpScreen(
-  navigation: (String, String?) -> Unit,
-  modifier: Modifier = Modifier,
-  viewModel: SignUpViewModel = viewModel()
+    navigation: (String, String?) -> Unit,
+    modifier: Modifier = Modifier,
+    viewModel: SignUpViewModel = viewModel()
 ) {
-  val uiState by viewModel.uiState
-  val fieldModifier = Modifier
-    .fillMaxWidth()
-    .padding(16.dp, 4.dp)
-
-  BasicToolbar(R.string.create_account)
-
-  Column(
-    modifier = modifier
+    val uiState by viewModel.uiState
+    val fieldModifier = Modifier
       .fillMaxWidth()
-      .fillMaxHeight()
-      .verticalScroll(rememberScrollState()),
-    verticalArrangement = Arrangement.Center,
-    horizontalAlignment = Alignment.CenterHorizontally
-  ) {
-    EmailTextField(uiState.email, viewModel::onEmailChange, fieldModifier)
-    PasswordTextField(uiState.password, viewModel::onPasswordChange, fieldModifier)
-    RepeatPasswordField(uiState.repeatPassword, viewModel::onRepeatPasswordChange, fieldModifier)
+      .padding(16.dp, 4.dp)
 
-    SimpleButton(R.string.create_account) {
-      viewModel.onSignUpClick(navigation)
+    Scaffold(topBar = { BasicToolbar(R.string.create_account) }) { paddingValues ->
+        Column(
+            modifier = modifier
+              .fillMaxWidth()
+              .fillMaxHeight()
+              .padding(paddingValues)
+              .padding(start = 24.dp, end = 24.dp)
+              .verticalScroll(rememberScrollState()),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            EmailTextField(uiState.email, viewModel::onEmailChange, fieldModifier)
+            Box(Modifier.height(8.dp))
+            PasswordTextField(uiState.password, viewModel::onPasswordChange, fieldModifier)
+            Box(Modifier.height(8.dp))
+            RepeatPasswordField(
+                uiState.repeatPassword,
+                viewModel::onRepeatPasswordChange,
+                fieldModifier
+            )
+            Box(Modifier.height(24.dp))
+            SimpleButton(R.string.create_account) {
+                viewModel.onSignUpClick(navigation)
+            }
+        }
     }
-  }
 }

@@ -1,6 +1,6 @@
 package it.thebertozz.android.housekeeping.objectdetection
 
-import android.content.Intent
+import android.R
 import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +19,10 @@ class TensorFlowActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
+
+        activityMainBinding.toolbar.setNavigationOnClickListener({
+            onBackPressed()
+        })
     }
 
     override fun onBackPressed() {

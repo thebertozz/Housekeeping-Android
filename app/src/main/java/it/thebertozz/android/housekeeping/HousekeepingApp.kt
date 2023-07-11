@@ -152,6 +152,7 @@ fun NavGraphBuilder.housekeepingGraph(appState: HouseKeepingAppState) {
 
     composable(SIGN_UP_SCREEN) {
         SignUpScreen(
+            navController = appState.navController,
             navigation = { route, popUp -> appState.manageNavigation(route, popUp) }
         )
     }
@@ -167,6 +168,7 @@ fun NavGraphBuilder.housekeepingGraph(appState: HouseKeepingAppState) {
         arguments = listOf(navArgument("containerId") { NavType.StringType })
     ) { backStackEntry ->
         DetailScreen(
+            appState.navController,
             backStackEntry.arguments?.getString("containerId") ?: "",
             navigation = { route, popUp -> appState.manageNavigation(route, popUp) }
         )
@@ -177,6 +179,7 @@ fun NavGraphBuilder.housekeepingGraph(appState: HouseKeepingAppState) {
         arguments = listOf(navArgument("containerType") { defaultValue = "" })
     ) { backStackEntry ->
         NewContainerScreen(
+            appState.navController,
             backStackEntry.arguments?.getString("containerType") ?: "",
             navigation = { route, popUp -> appState.manageNavigation(route, popUp) }
         )

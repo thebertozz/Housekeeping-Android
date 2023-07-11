@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import it.thebertozz.android.housekeeping.R
 import it.thebertozz.android.housekeeping.utils.SimpleButton
 import it.thebertozz.android.housekeeping.utils.BasicToolbar
@@ -20,6 +21,7 @@ import it.thebertozz.android.housekeeping.utils.RepeatPasswordField
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SignUpScreen(
+    navController: NavController?,
     navigation: (String, String?) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: SignUpViewModel = viewModel()
@@ -29,7 +31,7 @@ fun SignUpScreen(
       .fillMaxWidth()
       .padding(16.dp, 4.dp)
 
-    Scaffold(topBar = { BasicToolbar(R.string.create_account) }) { paddingValues ->
+    Scaffold(topBar = { BasicToolbar(R.string.create_account, navController = navController) }) { paddingValues ->
         Column(
             modifier = modifier
               .fillMaxWidth()

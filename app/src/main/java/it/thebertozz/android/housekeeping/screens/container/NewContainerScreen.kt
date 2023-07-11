@@ -26,6 +26,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import it.thebertozz.android.housekeeping.R
 import it.thebertozz.android.housekeeping.utils.BasicToolbar
 import it.thebertozz.android.housekeeping.utils.NormalTextField
@@ -33,6 +34,7 @@ import it.thebertozz.android.housekeeping.utils.SimpleButton
 
 @Composable
 fun NewContainerScreen(
+    navController: NavController?,
     containerName: String?,
     navigation: (String, String?) -> Unit,
     modifier: Modifier = Modifier,
@@ -45,7 +47,7 @@ fun NewContainerScreen(
     val textFieldBoxHeight = 24.dp
 
     Scaffold(
-        topBar = { BasicToolbar(R.string.new_container) }
+        topBar = { BasicToolbar(R.string.new_container, navController = navController) }
     ) { paddingValues ->
 
         Column(

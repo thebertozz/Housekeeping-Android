@@ -32,8 +32,6 @@ fun AccountScreen(
 
     viewModel.getCurrentUser()
 
-    val heightPadding = 24.dp
-
     Scaffold(
         topBar = { BasicToolbar(R.string.account) }
     ) { paddingValues ->
@@ -44,6 +42,8 @@ fun AccountScreen(
                 .fillMaxHeight()
                 .padding(paddingValues)
                 .padding(start = 24.dp, end = 24.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Box(Modifier.height(24.dp))
             Icon(imageVector = Icons.Default.AccountCircle, contentDescription = null, Modifier.size(80.dp).align(Alignment.CenterHorizontally))

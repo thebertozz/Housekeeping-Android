@@ -5,16 +5,30 @@ import androidx.annotation.StringRes
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.navigation.NavController
 
 @Composable
-fun BasicToolbar(@StringRes title: Int) {
+fun BasicToolbar(@StringRes title: Int, navController: NavController? = null) {
     TopAppBar(
-        //navigationIcon = { Icon(Icons.Default.ArrowBack, contentDescription = "Back button")},
+        navigationIcon = if (navController?.previousBackStackEntry != null) {
+            {
+                IconButton(onClick = { navController.navigateUp() }) {
+                    Icon(
+                        imageVector = Icons.Filled.ArrowBack,
+                        contentDescription = "Indietro"
+                    )
+                }
+            }
+        } else {
+            null
+        },
         title = { Text(stringResource(title)) },
         backgroundColor = toolbarColor()
     )

@@ -24,6 +24,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import it.thebertozz.android.housekeeping.R
 import it.thebertozz.android.housekeeping.utils.AlertDialog
 import it.thebertozz.android.housekeeping.utils.BasicToolbar
@@ -33,6 +35,7 @@ import it.thebertozz.android.housekeeping.utils.SimpleButton
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun DetailScreen(
+    navController: NavController?,
     containerId: String?,
     navigation: (String, String?) -> Unit,
     modifier: Modifier = Modifier,
@@ -45,13 +48,12 @@ fun DetailScreen(
     val heightPadding = 24.dp
 
     Scaffold(
-        topBar = { BasicToolbar(R.string.container_detail) }
+        topBar = { BasicToolbar(R.string.container_detail, navController = navController) }
     ) { paddingValues ->
 
         Column(
             modifier = modifier
                 .fillMaxWidth()
-                //.verticalScroll(rememberScrollState())
                 .padding(paddingValues)
                 .padding(start = 24.dp, end = 24.dp),
         ) {

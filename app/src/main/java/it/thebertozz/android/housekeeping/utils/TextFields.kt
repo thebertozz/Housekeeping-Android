@@ -1,6 +1,8 @@
 package it.thebertozz.android.housekeeping.utils
 
 import androidx.annotation.StringRes
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -8,11 +10,14 @@ import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.unit.dp
 import it.thebertozz.android.housekeeping.R
 
 @Composable
@@ -85,13 +90,14 @@ private fun PasswordTextField(
 }
 
 @Composable
-fun NormalTextField(value: String, onNewValue: (String) -> Unit, @StringRes placeholder: Int, modifier: Modifier = Modifier) {
+fun NormalTextField(value: String, onNewValue: (String) -> Unit, @StringRes placeholder: Int, modifier: Modifier = Modifier, leadingIcon: ImageVector) {
     OutlinedTextField(
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text, capitalization = KeyboardCapitalization.Sentences),
         singleLine = true,
-        modifier = modifier,
+        modifier = modifier.fillMaxWidth().padding(horizontal = 16.dp),
         value = value,
         onValueChange = { onNewValue(it) },
         placeholder = { Text(stringResource(id = placeholder)) },
-        leadingIcon = { Icon(imageVector = Icons.Default.Email, contentDescription = "Email") }
+        leadingIcon = { Icon(leadingIcon, contentDescription = null) }
     )
 }

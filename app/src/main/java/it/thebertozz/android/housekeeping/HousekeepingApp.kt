@@ -51,6 +51,7 @@ import it.thebertozz.android.housekeeping.utils.commons.PermissionDialog
 import it.thebertozz.android.housekeeping.utils.commons.PermissionRationaleDialog
 import it.thebertozz.android.housekeeping.managers.SnackbarManager
 import it.thebertozz.android.housekeeping.screens.account.AccountScreen
+import it.thebertozz.android.housekeeping.screens.container.NewContainerScreen
 import it.thebertozz.android.housekeeping.screens.detail.DetailScreen
 import it.thebertozz.android.housekeeping.screens.home.HomeScreen
 import it.thebertozz.android.housekeeping.screens.login.LoginScreen
@@ -167,6 +168,16 @@ fun NavGraphBuilder.housekeepingGraph(appState: HouseKeepingAppState) {
     ) { backStackEntry ->
         DetailScreen(
             backStackEntry.arguments?.getString("containerId") ?: "",
+            navigation = { route, popUp -> appState.manageNavigation(route, popUp) }
+        )
+    }
+
+    composable(
+        "$NEW_CONTAINER_SCREEN?containerType={containerType}",
+        arguments = listOf(navArgument("containerType") { defaultValue = "" })
+    ) { backStackEntry ->
+        NewContainerScreen(
+            backStackEntry.arguments?.getString("containerType") ?: "",
             navigation = { route, popUp -> appState.manageNavigation(route, popUp) }
         )
     }

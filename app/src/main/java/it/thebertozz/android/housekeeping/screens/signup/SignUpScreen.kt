@@ -40,10 +40,7 @@ fun SignUpScreen(
     PasswordTextField(uiState.password, viewModel::onPasswordChange, fieldModifier)
     RepeatPasswordField(uiState.repeatPassword, viewModel::onRepeatPasswordChange, fieldModifier)
 
-    SimpleButton(R.string.create_account,
-      Modifier
-        .fillMaxWidth()
-        .padding(16.dp, 8.dp)) {
+    SimpleButton(R.string.create_account) {
       viewModel.onSignUpClick(navigation)
     }
   }

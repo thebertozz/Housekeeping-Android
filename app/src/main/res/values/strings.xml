@@ -7,6 +7,10 @@
     <string name="save">Salva</string>
 
     <string name="container_detail">Dettaglio contenitore</string>
+    <string name="new_container">Nuovo contenitore</string>
+    <string name="new_container_description">Inserisci i dati del contenitore che desideri aggiungere:</string>
+    <string name="selected_container">Contenitore selezionato:</string>
+    <string name="add_new_item">Aggiungi un nuovo oggetto nel contenitore:</string>
 
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -23,9 +27,12 @@
 
     <string name="welcome">Benvenuti in Housekeeping!</string>
 
-    <string name="welcome_description">L\'app che ti permette di tenere traccia delle cose importanti della casa</string>
+    <string name="welcome_description">L\'app che permette di tenere traccia degli oggetti della casa</string>
 
     <string name="create_account">Crea account</string>
+
+    <string name="confirm">Conferma</string>
+    <string name="dismiss">Annulla</string>
 
     <string name="notification_permission_title">Permesso per le notifiche push</string>
     <string name="notification_permission_rationale">Le notifiche push sono utilizzate per indicare quando un alimento inserito sta per scadere</string>
@@ -45,11 +52,21 @@
     <string name="save_test_item">"Save test item"</string>
     <string name="get_all_items">"Get all items"</string>
 
-    <string name="item_name">Nome</string>
-    <string name="item_type">Tipologia</string>
+    <string name="name">Nome</string>
+    <string name="description">Descrizione</string>
+    <string name="type">Tipologia</string>
+
+    <string name="container_name">Nome</string>
+    <string name="container_description">Descrizione:</string>
+    <string name="container_type">Tipologia:</string>
+    <string name="container_elements">Numero di oggetti:</string>
 
     <string name="camera_permissions">È necessario fornire i permessi per la fotocamera per aggiungere un nuovo contenitore</string>
     <string name="camera_error">Errore nell\'inizializzazione della fotocamera</string>
+
+    <string name="delete_item_confirmation">Vuoi davvero eliminare l\'oggetto?</string>
+
+    <string name="your_containers">I tuoi contenitori</string>
 
     //TF
 

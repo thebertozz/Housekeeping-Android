@@ -9,9 +9,9 @@ import androidx.room.PrimaryKey
 data class Container(
     @PrimaryKey
     val id: String,
-    var name: String?,
-    var description: String?,
-    var type: String?
+    var name: String,
+    var description: String,
+    var type: String
 )
 @Entity(
     foreignKeys = [ForeignKey(
@@ -25,7 +25,7 @@ data class Item(
     @PrimaryKey
     val itemId: String,
     var name: String,
-    var type: String?,
+    var type: String,
     @ColumnInfo(name = "expire_timestamp")
     val expireTimestamp: Long,
     val container: String

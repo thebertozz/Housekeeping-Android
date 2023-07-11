@@ -10,14 +10,11 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 
-class DetailScreenViewModel: ViewModel() {
+class DetailScreenViewModel : ViewModel() {
 
     private val _uiState = MutableStateFlow(DetailUiState())
 
     var uiState: StateFlow<DetailUiState> = _uiState.asStateFlow()
-
-//    private val newItemName get() = uiState.value.newItemName
-//    private val newItemType get() = uiState.value.newItemType
 
     fun onItemNameChange(newValue: String) {
         _uiState.value = uiState.value.copy(newItemName = newValue)
@@ -29,7 +26,15 @@ class DetailScreenViewModel: ViewModel() {
 
     fun onSaveNewItemClicked() {
         viewModelScope.launch {
-            DatabaseManager.getDB()?.save(Item(Random.nextInt().toString(), _uiState.value.newItemName, _uiState.value.newItemType, System.currentTimeMillis(), _uiState.value.inventoryItem?.container?.id ?: ""))
+            DatabaseManager.getDB()?.save(
+                Item(
+                    Random.nextInt().toString(),
+                    _uiState.value.newItemName,
+                    _uiState.value.newItemType,
+                    System.currentTimeMillis(),
+                    _uiState.value.inventoryItem?.container?.id ?: ""
+                )
+            )
             getSelectedContainer(_uiState.value.inventoryItem?.container?.id ?: "")
         }
     }
@@ -39,5 +44,24 @@ class DetailScreenViewModel: ViewModel() {
             val container = DatabaseManager.getDB()?.getByContainerId(containerId)
             _uiState.value = DetailUiState(container)
         }
+    }
+
+    fun onItemLongTap(item: Item) {
+        _uiState.value = uiState.value.copy(shouldShowDeletionAlert = true)
+        _uiState.value = uiState.value.copy(selectedItemForDeletion = item)
+    }
+
+    fun onDeleteItemConfirmation(item: Item) {
+        _uiState.value = uiState.value.copy(shouldShowDeletionAlert = false)
+        _uiState.value = uiState.value.copy(selectedItemForDeletion = null)
+        viewModelScope.launch {
+            DatabaseManager.getDB()?.delete(item)
+            getSelectedContainer(_uiState.value.inventoryItem?.container?.id ?: "")
+        }
+    }
+
+    fun onDeleteItemDismiss() {
+        _uiState.value = uiState.value.copy(shouldShowDeletionAlert = false)
+        _uiState.value = uiState.value.copy(selectedItemForDeletion = null)
     }
 }

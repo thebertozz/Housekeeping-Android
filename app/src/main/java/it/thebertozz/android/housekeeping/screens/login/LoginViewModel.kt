@@ -53,7 +53,7 @@ class LoginViewModel: ViewModel() {
 
     fun onForgotPasswordClick() {
         if (email.isBlank()) {
-            SnackbarManager.showMessage(R.string.error)
+            SnackbarManager.showMessage(R.string.blank_email)
             return
         }
 

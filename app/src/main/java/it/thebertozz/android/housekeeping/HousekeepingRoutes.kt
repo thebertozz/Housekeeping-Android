@@ -1,5 +1,7 @@
 package it.thebertozz.android.housekeeping
 
+/** Definizione delle pagine dell'app */
+
 const val SPLASH_SCREEN = "SplashScreen"
 const val HOME_SCREEN = "HomeScreen"
 const val DETAIL_SCREEN = "DetailScreen"

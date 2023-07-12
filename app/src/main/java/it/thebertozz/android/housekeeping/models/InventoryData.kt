@@ -5,6 +5,8 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 
+/** Model per la gestione dei container e degli oggetti */
+
 @Entity
 data class Container(
     @PrimaryKey

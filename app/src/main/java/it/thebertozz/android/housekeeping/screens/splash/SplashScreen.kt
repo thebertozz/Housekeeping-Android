@@ -15,6 +15,12 @@ import kotlinx.coroutines.delay
 
 private const val SPLASH_TIMEOUT = 100L
 
+/**
+Classe che mostra una Splash Screen.
+Il view model verifica la presenza di un Firebase User:
+se presente, manda alla HomeScreen, altrimenti alla LoginScreen
+*/
+
 @Composable
 fun SplashScreen(
   navigation: (String, String?) -> Unit,

@@ -14,6 +14,10 @@ import org.tensorflow.lite.task.core.vision.ImageProcessingOptions
 import org.tensorflow.lite.task.vision.classifier.Classifications
 import org.tensorflow.lite.task.vision.classifier.ImageClassifier
 
+/**
+Classe che permette la gestione del classificatore di immagini
+ */
+
 class ImageClassifierHelper(
     var threshold: Float = 0.5f,
     var numThreads: Int = 2,

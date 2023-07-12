@@ -5,6 +5,8 @@ import androidx.room.Room
 import it.thebertozz.android.housekeeping.database.HousekeepingDao
 import it.thebertozz.android.housekeeping.database.HousekeepingDatabase
 
+/** Classe object per la gestione centralizzata del database */
+
 object DatabaseManager {
 
     private var db: HousekeepingDao? = null

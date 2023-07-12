@@ -4,6 +4,8 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
+/** Classe object per la gestione centralizzata di Firebase Auth */
+
 object FirebaseManager {
     fun hasUser(): Boolean {
         return Firebase.auth.currentUser != null

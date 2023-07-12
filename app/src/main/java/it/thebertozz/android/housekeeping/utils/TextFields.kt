@@ -21,22 +21,6 @@ import androidx.compose.ui.unit.dp
 import it.thebertozz.android.housekeeping.R
 
 @Composable
-fun BasicField(
-    @StringRes text: Int,
-    value: String,
-    onNewValue: (String) -> Unit,
-    modifier: Modifier = Modifier
-) {
-    OutlinedTextField(
-        singleLine = true,
-        modifier = modifier,
-        value = value,
-        onValueChange = { onNewValue(it) },
-        placeholder = { Text(stringResource(text)) }
-    )
-}
-
-@Composable
 fun EmailTextField(value: String, onNewValue: (String) -> Unit, modifier: Modifier = Modifier) {
     OutlinedTextField(
         singleLine = true,

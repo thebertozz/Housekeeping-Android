@@ -3,14 +3,11 @@ package it.thebertozz.android.housekeeping
 import android.Manifest
 import android.content.res.Resources
 import android.os.Build
-import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.ExtendedFloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
@@ -20,14 +17,12 @@ import androidx.compose.material.SnackbarHost
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
@@ -60,7 +55,11 @@ import it.thebertozz.android.housekeeping.screens.splash.SplashScreen
 import it.thebertozz.android.housekeeping.ui.theme.HousekeepingTheme
 import kotlinx.coroutines.CoroutineScope
 
-@OptIn(ExperimentalPermissionsApi::class)
+/**
+Classe componente principale per Compose che gestisce tutta la grafica di contesto, lo stato
+ed il grafo delle navigazioni
+*/
+
 @Composable
 @ExperimentalMaterialApi
 fun HousekeepingApp() {

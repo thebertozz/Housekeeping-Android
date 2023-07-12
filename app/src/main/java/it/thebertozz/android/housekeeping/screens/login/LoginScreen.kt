@@ -21,8 +21,13 @@ import it.thebertozz.android.housekeeping.utils.SimpleTextButton
 import it.thebertozz.android.housekeeping.utils.EmailTextField
 import it.thebertozz.android.housekeeping.utils.PasswordTextField
 import it.thebertozz.android.housekeeping.R
-import it.thebertozz.android.housekeeping.utils.BasicToolbar
+import it.thebertozz.android.housekeeping.utils.BasicAppBar
 
+/**
+Classe per il login utente.
+Il view model permette di gestire i dati dei text field e di
+gestire il tap sul pulsante di registrazione
+*/
 @Composable
 fun LoginScreen(
     navigation: (String, String?) -> Unit,
@@ -31,7 +36,7 @@ fun LoginScreen(
 ) {
     val uiState by viewModel.uiState
 
-    Scaffold(topBar = { BasicToolbar(R.string.login) }) { paddingValues ->
+    Scaffold(topBar = { BasicAppBar(R.string.login) }) { paddingValues ->
 
         Column(
             modifier = modifier

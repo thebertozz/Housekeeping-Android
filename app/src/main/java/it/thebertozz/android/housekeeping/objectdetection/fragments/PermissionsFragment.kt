@@ -15,8 +15,7 @@ import it.thebertozz.android.housekeeping.R
 private val PERMISSIONS_REQUIRED = arrayOf(Manifest.permission.CAMERA)
 
 /**
- * The sole purpose of this fragment is to request permissions and, once granted, display the
- * camera fragment to the user.
+Classe che gestisce il fragment per richiedere i permessi della fotocamera
  */
 class PermissionsFragment : Fragment() {
 
@@ -25,10 +24,10 @@ class PermissionsFragment : Fragment() {
             ActivityResultContracts.RequestPermission()
         ) { isGranted: Boolean ->
             if (isGranted) {
-                Toast.makeText(context, "Permission request granted", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, resources.getText(R.string.camera_access), Toast.LENGTH_LONG).show()
                 navigateToCamera()
             } else {
-                Toast.makeText(context, "Permission request denied", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, resources.getText(R.string.camera_denied), Toast.LENGTH_LONG).show()
             }
         }
 

@@ -11,6 +11,11 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
 
+/**
+Classe che gestisce lo stato dell'app e permette le navigazioni
+ */
+
+
 class HouseKeepingAppState(
     val scaffoldState: ScaffoldState,
     val navController: NavHostController,
@@ -21,15 +26,9 @@ class HouseKeepingAppState(
 
     private val bottomBarRoutes = arrayListOf(HOME_SCREEN, ACCOUNT_SCREEN)
 
-    private val floatingActionBarRoutes = arrayListOf(HOME_SCREEN)
-
     val shouldShowBottomBar: Boolean
         @Composable get() = navController
             .currentBackStackEntryAsState().value?.destination?.route in bottomBarRoutes
-
-    val shouldShowFloatingActionBar: Boolean
-        @Composable get() = navController
-            .currentBackStackEntryAsState().value?.destination?.route in floatingActionBarRoutes
 
     init {
         coroutineScope.launch {
@@ -40,29 +39,12 @@ class HouseKeepingAppState(
         }
     }
 
-    fun popUp() {
-        navController.popBackStack()
-    }
-
-    fun navigate(route: String) {
-        navController.navigate(route) {
-            launchSingleTop = true
-        }
-    }
-
     fun manageNavigation(route: String, popUp: String?) {
         navController.navigate(route) {
             launchSingleTop = true
             if (popUp != null) {
                 popUpTo(popUp) { inclusive = true }
             }
-        }
-    }
-
-    fun clearAndNavigate(route: String) {
-        navController.navigate(route) {
-            launchSingleTop = true
-            popUpTo(0) { inclusive = true }
         }
     }
 }

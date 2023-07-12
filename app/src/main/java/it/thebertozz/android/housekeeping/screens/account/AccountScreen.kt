@@ -1,8 +1,6 @@
 package it.thebertozz.android.housekeeping.screens.account
 
-import android.graphics.Paint.Align
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
@@ -13,14 +11,18 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import it.thebertozz.android.housekeeping.R
 import it.thebertozz.android.housekeeping.utils.AlertDialog
-import it.thebertozz.android.housekeeping.utils.BasicToolbar
+import it.thebertozz.android.housekeeping.utils.BasicAppBar
 import it.thebertozz.android.housekeeping.utils.SimpleButton
+
+/**
+Classe che permette di visualizzare i dati utente Firebase.
+Il view model gestisce il pulsante di logout.
+*/
 
 @Composable
 fun AccountScreen(
@@ -33,7 +35,7 @@ fun AccountScreen(
     viewModel.getCurrentUser()
 
     Scaffold(
-        topBar = { BasicToolbar(R.string.account) }
+        topBar = { BasicAppBar(R.string.account) }
     ) { paddingValues ->
 
         Column(

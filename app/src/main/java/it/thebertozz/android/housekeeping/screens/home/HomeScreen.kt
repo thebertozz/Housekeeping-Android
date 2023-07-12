@@ -19,7 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import it.thebertozz.android.housekeeping.R
-import it.thebertozz.android.housekeeping.utils.BasicToolbar
+import it.thebertozz.android.housekeeping.utils.BasicAppBar
 import androidx.compose.material.Divider
 import androidx.compose.material.ExtendedFloatingActionButton
 import androidx.compose.material.FloatingActionButton
@@ -36,6 +36,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import it.thebertozz.android.housekeeping.objectdetection.TensorFlowActivity
 import it.thebertozz.android.housekeeping.utils.AlertDialog
+
+/**
+Classe che mostra la schermata dei contenitori inseriti, o un messaggio se non ce ne sono.
+Il view model gestisce le azioni dei pulsanti, il tap sugli elementi della lista e l'eliminazione di un elemento
+*/
 
 @OptIn(
     ExperimentalFoundationApi::class
@@ -81,7 +86,7 @@ fun HomeScreen(
                 }
             }
         },
-        topBar = { BasicToolbar(R.string.home) }) { paddingValues ->
+        topBar = { BasicAppBar(R.string.home) }) { paddingValues ->
 
         if (homeUiState.currentInventory.isNullOrEmpty()) {
 

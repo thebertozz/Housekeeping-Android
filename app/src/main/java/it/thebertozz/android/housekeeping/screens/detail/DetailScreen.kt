@@ -25,12 +25,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import it.thebertozz.android.housekeeping.R
 import it.thebertozz.android.housekeeping.utils.AlertDialog
-import it.thebertozz.android.housekeeping.utils.BasicToolbar
+import it.thebertozz.android.housekeeping.utils.BasicAppBar
 import it.thebertozz.android.housekeeping.utils.NormalTextField
 import it.thebertozz.android.housekeeping.utils.SimpleButton
+
+/**
+Classe che mostra il dettaglio di un contenitore.
+Il view model gestisce le azioni dei pulsanti e dei text field e l'eliminazione di un elemento
+*/
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -48,7 +52,7 @@ fun DetailScreen(
     val heightPadding = 24.dp
 
     Scaffold(
-        topBar = { BasicToolbar(R.string.container_detail, navController = navController) }
+        topBar = { BasicAppBar(R.string.container_detail, navController = navController) }
     ) { paddingValues ->
 
         Column(

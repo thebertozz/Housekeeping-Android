@@ -15,20 +15,24 @@ import it.thebertozz.android.housekeeping.models.Container
 import it.thebertozz.android.housekeeping.ui.theme.HousekeepingTheme
 import kotlinx.coroutines.coroutineScope
 
+/**
+Classe entry point dell'app Android
+Imposta il database e setta il contenuto alla componente in Jetpack Compose
+*/
+
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterialApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //Database initialization
+        //Inizializzazione del DB
 
         DatabaseManager.initializeDB(this)
 
-        //Compose app content
+        //Contenuto Jetpack Compose
 
         setContent {
             HousekeepingTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background

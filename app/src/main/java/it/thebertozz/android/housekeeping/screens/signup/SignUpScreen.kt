@@ -13,11 +13,16 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import it.thebertozz.android.housekeeping.R
 import it.thebertozz.android.housekeeping.utils.SimpleButton
-import it.thebertozz.android.housekeeping.utils.BasicToolbar
+import it.thebertozz.android.housekeeping.utils.BasicAppBar
 import it.thebertozz.android.housekeeping.utils.EmailTextField
 import it.thebertozz.android.housekeeping.utils.PasswordTextField
 import it.thebertozz.android.housekeeping.utils.RepeatPasswordField
 
+/**
+Classe per la registrazione utente.
+Il view model permette di gestire i dati dei text field e di
+gestire il tap sul pulsante di registrazione
+*/
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SignUpScreen(
@@ -31,7 +36,7 @@ fun SignUpScreen(
       .fillMaxWidth()
       .padding(16.dp, 4.dp)
 
-    Scaffold(topBar = { BasicToolbar(R.string.create_account, navController = navController) }) { paddingValues ->
+    Scaffold(topBar = { BasicAppBar(R.string.create_account, navController = navController) }) { paddingValues ->
         Column(
             modifier = modifier
               .fillMaxWidth()

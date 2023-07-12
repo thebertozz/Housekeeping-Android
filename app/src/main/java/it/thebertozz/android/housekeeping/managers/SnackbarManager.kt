@@ -7,6 +7,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
+/** Classe object per la gestione centralizzata delle SnackBar da mostrare all'utente */
+
 object SnackbarManager {
     private val messages: MutableStateFlow<SnackbarMessage?> = MutableStateFlow(null)
     val snackbarMessages: StateFlow<SnackbarMessage?> get() = messages.asStateFlow()

@@ -49,7 +49,6 @@ class NewContainerScreenViewModel : ViewModel() {
                     _uiState.value.newContainerType
                 )
             )
-            Log.i(TAG, "Stored new container")
             onNewContainerAdded(navigation)
         }
     }

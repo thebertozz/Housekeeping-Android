@@ -1,16 +1,15 @@
 package it.thebertozz.android.housekeeping.objectdetection
 
-import android.R
 import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import it.thebertozz.android.housekeeping.R
 import it.thebertozz.android.housekeeping.databinding.ActivityMainBinding
 
-
 /**
- * Main entry point into our app. This app follows the single-activity pattern, and all
- * functionality is implemented in the form of fragments.
+Classe entry point per la componente TensorfFlow
  */
+
 class TensorFlowActivity : AppCompatActivity() {
 
     private lateinit var activityMainBinding: ActivityMainBinding
@@ -23,6 +22,8 @@ class TensorFlowActivity : AppCompatActivity() {
         activityMainBinding.toolbar.setNavigationOnClickListener({
             onBackPressed()
         })
+
+        activityMainBinding.toolbar.title = resources.getString(R.string.choose_object)
     }
 
     override fun onBackPressed() {

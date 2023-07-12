@@ -9,6 +9,8 @@ import it.thebertozz.android.housekeeping.models.Container
 import it.thebertozz.android.housekeeping.models.InventoryItem
 import it.thebertozz.android.housekeeping.models.Item
 
+/** Interfaccia DAO (Data Access Object) per definire le funzionalità del DB */
+
 @Dao
 interface HousekeepingDao {
     @Insert

@@ -9,6 +9,11 @@ import org.tensorflow.lite.support.label.Category
 import org.tensorflow.lite.task.vision.classifier.Classifications
 import kotlin.math.min
 
+/**
+Adapter per la Reclycler View che mostra i risultati della classificazione e gestisce il tap
+ sull'elemento tramite listener
+ */
+
 class ClassificationResultsAdapter(categoryLabelClickListener: CategoryLabelClickListener?) :
     RecyclerView.Adapter<ClassificationResultsAdapter.ViewHolder>() {
     private var onClickListener: CategoryLabelClickListener? = null

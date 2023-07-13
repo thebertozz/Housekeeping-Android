@@ -45,8 +45,7 @@ class DetailScreenViewModel() : ViewModel() {
             getSelectedContainer(_uiState.value.inventoryItem?.container?.id ?: "")
             if (!_uiState.value.newItemBestBeforeDate.isNullOrBlank()) {
                 calendar.set(Calendar.AM_PM, Calendar.AM)
-                calendar.set(Calendar.HOUR, 12)
-                calendar.set(Calendar.MINUTE, 35)//Setto le 12 (AM) del giorno impostato per la notifica
+                calendar.set(Calendar.HOUR, 12) //Setto le 12 (AM) del giorno impostato per la notifica
                 NotificationsManager.scheduleNotification(
                     context,
                     _uiState.value.newItemName,

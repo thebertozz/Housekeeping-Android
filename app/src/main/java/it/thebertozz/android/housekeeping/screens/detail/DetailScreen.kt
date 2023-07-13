@@ -134,6 +134,8 @@ fun DetailScreen(
             SimpleButton(text = R.string.save) {
                 if (detailUiState.newItemName.isNotBlank() && detailUiState.newItemType.isNotBlank()) {
                     viewModel.onSaveNewItemClicked(currentContext, calendar)
+                } else {
+                    viewModel.onEmptyFields()
                 }
             }
 

@@ -3,8 +3,10 @@ package it.thebertozz.android.housekeeping.screens.detail
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import it.thebertozz.android.housekeeping.R
 import it.thebertozz.android.housekeeping.managers.DatabaseManager
 import it.thebertozz.android.housekeeping.managers.NotificationsManager
+import it.thebertozz.android.housekeeping.managers.SnackbarManager
 import it.thebertozz.android.housekeeping.models.Item
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -37,8 +39,8 @@ class DetailScreenViewModel() : ViewModel() {
             DatabaseManager.getDB()?.save(
                 Item(
                     Random.nextInt().toString(),
-                    _uiState.value.newItemName,
-                    _uiState.value.newItemType,
+                    _uiState.value.newItemName.trimEnd(),
+                    _uiState.value.newItemType.trimEnd(),
                     _uiState.value.newItemBestBeforeDate ?: "",
                     _uiState.value.inventoryItem?.container?.id ?: "",
                     notificationId
@@ -90,5 +92,11 @@ class DetailScreenViewModel() : ViewModel() {
     fun onDeleteItemDismiss() {
         _uiState.value = uiState.value.copy(shouldShowDeletionAlert = false)
         _uiState.value = uiState.value.copy(selectedItemForDeletion = null)
+    }
+
+    fun onEmptyFields() {
+        viewModelScope.launch {
+            SnackbarManager.showMessage(R.string.complete_fields)
+        }
     }
 }

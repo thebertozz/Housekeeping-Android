@@ -4,7 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import it.thebertozz.android.housekeeping.HOME_SCREEN
 import it.thebertozz.android.housekeeping.NEW_CONTAINER_SCREEN
+import it.thebertozz.android.housekeeping.R
 import it.thebertozz.android.housekeeping.managers.DatabaseManager
+import it.thebertozz.android.housekeeping.managers.SnackbarManager
 import it.thebertozz.android.housekeeping.models.Container
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -40,18 +42,24 @@ class NewContainerScreenViewModel : ViewModel() {
             DatabaseManager.getDB()?.save(
                 Container(
                     uuid,
-                    _uiState.value.newContainerName,
-                    _uiState.value.newContainerDescription,
-                    _uiState.value.newContainerType
+                    _uiState.value.newContainerName.trimEnd(),
+                    _uiState.value.newContainerDescription.trimEnd(),
+                    _uiState.value.newContainerType.trimEnd()
                 )
             )
             onNewContainerAdded(navigation)
         }
     }
 
-    fun onNewContainerAdded(navigation: (String, String?) -> Unit) {
+    private fun onNewContainerAdded(navigation: (String, String?) -> Unit) {
         viewModelScope.launch() {
             navigation(HOME_SCREEN, NEW_CONTAINER_SCREEN)
+        }
+    }
+
+    fun onEmptyFields() {
+        viewModelScope.launch {
+            SnackbarManager.showMessage(R.string.complete_fields)
         }
     }
 }

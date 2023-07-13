@@ -27,11 +27,7 @@ fun BasicAppBar(@StringRes title: Int, navController: NavController? = null) {
             null
         },
         title = { Text(stringResource(title)) },
-        backgroundColor = toolbarColor()
+        backgroundColor = Color.Blue,
+        contentColor = Color.White
     )
-}
-
-@Composable
-private fun toolbarColor(darkTheme: Boolean = isSystemInDarkTheme()): Color {
-    return if (darkTheme) MaterialTheme.colors.secondary else MaterialTheme.colors.primaryVariant
 }

@@ -94,6 +94,8 @@ fun NewContainerScreen(
                     && containerUiState.newContainerType.isNotBlank()
                 ) {
                     viewModel.onSaveNewContainerClicked(navigation)
+                } else {
+                    viewModel.onEmptyFields()
                 }
             }
         }

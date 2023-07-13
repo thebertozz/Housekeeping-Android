@@ -23,6 +23,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -64,7 +65,7 @@ fun HousekeepingApp() {
             Scaffold(
                 bottomBar = {
                     if (appState.shouldShowBottomBar) {
-                        BottomNavigation {
+                        BottomNavigation(backgroundColor = Color.White) {
                             BottomNavigationItem(
                                 selected = currentScreen?.route == HOME_SCREEN,
                                 onClick = { appState.manageNavigation(HOME_SCREEN, null) },

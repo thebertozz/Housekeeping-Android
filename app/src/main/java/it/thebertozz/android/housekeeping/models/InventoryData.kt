@@ -30,5 +30,6 @@ data class Item(
     var type: String,
     @ColumnInfo(name = "best_before_date")
     val bestBeforeDate: String,
-    val container: String
+    val container: String,
+    var notificationID: Int?
 )

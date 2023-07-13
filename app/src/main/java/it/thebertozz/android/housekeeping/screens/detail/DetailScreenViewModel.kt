@@ -33,22 +33,27 @@ class DetailScreenViewModel() : ViewModel() {
 
     fun onSaveNewItemClicked(context: Context, calendar: Calendar) {
         viewModelScope.launch {
+            val notificationId = Random.nextInt()
             DatabaseManager.getDB()?.save(
                 Item(
                     Random.nextInt().toString(),
                     _uiState.value.newItemName,
                     _uiState.value.newItemType,
                     _uiState.value.newItemBestBeforeDate ?: "",
-                    _uiState.value.inventoryItem?.container?.id ?: ""
+                    _uiState.value.inventoryItem?.container?.id ?: "",
+                    notificationId
                 )
             )
             getSelectedContainer(_uiState.value.inventoryItem?.container?.id ?: "")
             if (!_uiState.value.newItemBestBeforeDate.isNullOrBlank()) {
                 calendar.set(Calendar.AM_PM, Calendar.AM)
-                calendar.set(Calendar.HOUR, 12) //Setto le 12 (AM) del giorno impostato per la notifica
+                calendar.set(Calendar.HOUR, 14)
+                calendar.set(Calendar.MINUTE, 19)
+                //Setto le 12 (AM) del giorno impostato per la notifica
                 NotificationsManager.scheduleNotification(
                     context,
                     _uiState.value.newItemName,
+                    notificationId,
                     calendar
                 )
             }
@@ -67,12 +72,19 @@ class DetailScreenViewModel() : ViewModel() {
         _uiState.value = uiState.value.copy(selectedItemForDeletion = item)
     }
 
-    fun onDeleteItemConfirmation(item: Item) {
+    fun onDeleteItemConfirmation(context: Context, item: Item) {
         _uiState.value = uiState.value.copy(shouldShowDeletionAlert = false)
         _uiState.value = uiState.value.copy(selectedItemForDeletion = null)
         viewModelScope.launch {
             DatabaseManager.getDB()?.delete(item)
             getSelectedContainer(_uiState.value.inventoryItem?.container?.id ?: "")
+            if (item.bestBeforeDate.isNotBlank()) {
+                NotificationsManager.cancelNotification(
+                    context,
+                    item.name,
+                    item.notificationID ?: 0
+                )
+            }
         }
     }
 

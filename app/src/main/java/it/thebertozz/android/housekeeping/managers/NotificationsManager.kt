@@ -32,12 +32,12 @@ object NotificationsManager {
         manager?.createNotificationChannel(channel)
     }
 
-    fun scheduleNotification(context: Context, itemName: String, calendar: Calendar) {
+    fun scheduleNotification(context: Context, itemName: String, itemNotificationId: Int, calendar: Calendar) {
         val intent = Intent(context, NotificationReceiver::class.java)
         intent.putExtra("itemName", itemName)
         val pendingIntent = PendingIntent.getBroadcast(
             context,
-            1,
+            itemNotificationId,
             intent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
@@ -48,5 +48,19 @@ object NotificationsManager {
             pendingIntent
         )
         Toast.makeText(context, R.string.notification_set, Toast.LENGTH_LONG).show()
+    }
+
+    fun cancelNotification(context: Context, itemName: String, itemNotificationCode: Int) {
+        val intent = Intent(context, NotificationReceiver::class.java)
+        intent.putExtra("itemName", itemName)
+        val pendingIntent = PendingIntent.getBroadcast(
+            context,
+            itemNotificationCode,
+            intent,
+            PendingIntent.FLAG_CANCEL_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+        val alarmManager = context.getSystemService(ALARM_SERVICE) as AlarmManager?
+        alarmManager?.cancel(pendingIntent)
+        Toast.makeText(context, R.string.notification_deleted, Toast.LENGTH_LONG).show()
     }
 }

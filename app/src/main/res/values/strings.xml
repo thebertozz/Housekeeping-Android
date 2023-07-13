@@ -44,6 +44,7 @@
     <string name="notification_title">Notifica di scadenza</string>
     <string name="notification_description">sta per scadere</string>
     <string name="notification_set">Notifica di scadenza impostata</string>
+    <string name="notification_deleted">Notifica di scadenza eliminata</string>
 
     <string name="blank_email">Il campo email non può essere vuoto</string>
     <string name="blank_password">Il campo password non può essere vuoto</string>

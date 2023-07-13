@@ -172,7 +172,7 @@ fun DetailScreen(
 
         if(detailUiState.shouldShowDeletionAlert) {
             AlertDialog(confirmClicked = {
-                viewModel.onDeleteItemConfirmation(detailUiState.selectedItemForDeletion!!)
+                viewModel.onDeleteItemConfirmation(currentContext, detailUiState.selectedItemForDeletion!!)
             }, dismissClicked = {
                 viewModel.onDeleteItemDismiss()
             }, text = R.string.delete_item_confirmation)

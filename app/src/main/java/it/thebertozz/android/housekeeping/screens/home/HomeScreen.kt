@@ -10,6 +10,7 @@ import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Colors
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -36,6 +37,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import it.thebertozz.android.housekeeping.objectdetection.TensorFlowActivity
 import it.thebertozz.android.housekeeping.commons.AlertDialog
+import it.thebertozz.android.housekeeping.resources
 
 /**
 Classe che mostra la schermata dei contenitori inseriti, o un messaggio se non ce ne sono.

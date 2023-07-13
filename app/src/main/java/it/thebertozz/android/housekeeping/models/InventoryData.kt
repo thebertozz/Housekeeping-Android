@@ -28,7 +28,7 @@ data class Item(
     val itemId: String,
     var name: String,
     var type: String,
-    @ColumnInfo(name = "expire_timestamp")
-    val expireTimestamp: Long,
+    @ColumnInfo(name = "best_before_date")
+    val bestBeforeDate: String,
     val container: String
 )

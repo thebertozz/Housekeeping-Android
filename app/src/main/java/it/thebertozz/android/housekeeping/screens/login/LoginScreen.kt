@@ -16,12 +16,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import it.thebertozz.android.housekeeping.utils.SimpleButton
-import it.thebertozz.android.housekeeping.utils.SimpleTextButton
-import it.thebertozz.android.housekeeping.utils.EmailTextField
-import it.thebertozz.android.housekeeping.utils.PasswordTextField
+import it.thebertozz.android.housekeeping.commons.SimpleButton
+import it.thebertozz.android.housekeeping.commons.SimpleTextButton
+import it.thebertozz.android.housekeeping.commons.EmailTextField
+import it.thebertozz.android.housekeeping.commons.PasswordTextField
 import it.thebertozz.android.housekeeping.R
-import it.thebertozz.android.housekeeping.utils.BasicAppBar
+import it.thebertozz.android.housekeeping.commons.BasicAppBar
 
 /**
 Classe per il login utente.

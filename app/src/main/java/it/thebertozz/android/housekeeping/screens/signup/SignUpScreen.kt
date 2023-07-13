@@ -12,11 +12,11 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import it.thebertozz.android.housekeeping.R
-import it.thebertozz.android.housekeeping.utils.SimpleButton
-import it.thebertozz.android.housekeeping.utils.BasicAppBar
-import it.thebertozz.android.housekeeping.utils.EmailTextField
-import it.thebertozz.android.housekeeping.utils.PasswordTextField
-import it.thebertozz.android.housekeeping.utils.RepeatPasswordField
+import it.thebertozz.android.housekeeping.commons.SimpleButton
+import it.thebertozz.android.housekeeping.commons.BasicAppBar
+import it.thebertozz.android.housekeeping.commons.EmailTextField
+import it.thebertozz.android.housekeeping.commons.PasswordTextField
+import it.thebertozz.android.housekeeping.commons.RepeatPasswordField
 
 /**
 Classe per la registrazione utente.

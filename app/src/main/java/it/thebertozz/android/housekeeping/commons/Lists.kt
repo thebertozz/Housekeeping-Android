@@ -16,15 +16,20 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import it.thebertozz.android.housekeeping.R
+import it.thebertozz.android.housekeeping.models.Item
 
 @Composable
-fun DetailListTile(name: String, type: String, modifier: Modifier) {
+fun DetailListTile(item: Item, modifier: Modifier) {
     Column(modifier = modifier.fillMaxWidth()) {
         Box(Modifier.height(4.dp))
-        Text(name, fontSize = 17.sp, fontWeight = FontWeight.Bold)
+        Text(item.name, fontSize = 17.sp, fontWeight = FontWeight.Bold)
         Box(Modifier.height(4.dp))
-        Text(type, fontSize = 16.sp)
+        Text(item.type, fontSize = 16.sp)
         Box(Modifier.height(4.dp))
+        if (item.bestBeforeDate.isNotBlank()) {
+            Text(item.bestBeforeDate, fontSize = 16.sp)
+            Box(Modifier.height(4.dp))
+        }
     }
 }
 

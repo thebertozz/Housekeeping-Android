@@ -7,6 +7,9 @@ data class DetailUiState(
     val inventoryItem: InventoryItem? = null,
     val newItemName: String = "",
     val newItemType: String = "",
+    val newItemBestBeforeDate: String? = "",
     val shouldShowDeletionAlert: Boolean = false,
-    var selectedItemForDeletion: Item? = null
+    var selectedItemForDeletion: Item? = null,
+    var shouldShowNotificationAlert: Boolean = false,
+    var isNotificationEnabled: Boolean = false
 )

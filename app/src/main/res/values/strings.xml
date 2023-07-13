@@ -36,8 +36,14 @@
     <string name="back">Indietro</string>
 
     <string name="notification_permission_title">Permesso per le notifiche push</string>
-    <string name="notification_permission_rationale">Le notifiche push sono utilizzate per indicare quando un alimento inserito sta per scadere</string>
-    <string name="notification_permissions_button">Richiedi il permesso</string>
+    <string name="notification_permission_rationale">Abilitando le notifiche push, potrai sapere quando un alimento inserito sta per scadere.\n\nRiceverai una notifica alle 12 del giorno selezionato.</string>
+    <string name="camera_permission_title">Permesso per l\'accesso alla fotocamera</string>
+    <string name="camera_permission_rationale">La fotocamera è utilizzata per individuare un nuovo contenitore</string>
+    <string name="permissions_request_button">Richiedi il permesso</string>
+
+    <string name="notification_title">Notifica di scadenza</string>
+    <string name="notification_description">sta per scadere</string>
+    <string name="notification_set">Notifica di scadenza impostata</string>
 
     <string name="blank_email">Il campo email non può essere vuoto</string>
     <string name="blank_password">Il campo password non può essere vuoto</string>
@@ -56,6 +62,8 @@
     <string name="name">Nome</string>
     <string name="description">Descrizione</string>
     <string name="type">Tipologia</string>
+    <string name="best_before_date">Scadenza (Opzionale)</string>
+    <string name="best_before_date_button">Inserisci scadenza</string>
 
     <string name="container_name">Nome</string>
     <string name="container_description">Descrizione:</string>
@@ -76,7 +84,7 @@
     //TensorFlow
 
     <string name="camera_access">Hai fornito i permessi per la fotocamera.</string>
-    <string name="camera_denied">Accesso alla fotocamera negato. Vai nelle impostazioni del sistema per abilitare il permesso."</string>
+    <string name="camera_denied">Accesso alla fotocamera negato, vai nelle impostazioni del sistema."</string>
 
     <string name="label_interence_time">Tempo di inferenza</string>
 

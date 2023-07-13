@@ -1,5 +1,6 @@
-package it.thebertozz.android.housekeeping.utils.commons
+package it.thebertozz.android.housekeeping.permissions
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
@@ -20,14 +21,14 @@ import androidx.compose.ui.unit.dp
 import it.thebertozz.android.housekeeping.R
 
 @Composable
-fun PermissionDialog(onRequestPermission: () -> Unit) {
+fun PermissionDialog(@StringRes title: Int, @StringRes text: Int, onRequestPermission: () -> Unit) {
     var showWarningDialog by remember { mutableStateOf(true) }
 
     if (showWarningDialog) {
         AlertDialog(
             modifier = Modifier.wrapContentWidth().wrapContentHeight(),
-            title = { Text(stringResource(id = R.string.notification_permission_title)) },
-            text = { Text(stringResource(id = R.string.notification_permission_rationale)) },
+            title = { Text(stringResource(id = title)) },
+            text = { Text(stringResource(id = text)) },
             confirmButton = {
                 TextButton(
                     onClick = {
@@ -39,7 +40,7 @@ fun PermissionDialog(onRequestPermission: () -> Unit) {
                         backgroundColor = Color.Blue,
                         contentColor = Color.White
                     )
-                ) { Text(text = stringResource(R.string.notification_permissions_button)) }
+                ) { Text(text = stringResource(R.string.permissions_request_button)) }
             },
             onDismissRequest = { }
         )
@@ -47,14 +48,14 @@ fun PermissionDialog(onRequestPermission: () -> Unit) {
 }
 
 @Composable
-fun PermissionRationaleDialog() {
+fun PermissionRationaleDialog(@StringRes title: Int, @StringRes text: Int) {
     var showWarningDialog by remember { mutableStateOf(true) }
 
     if (showWarningDialog) {
         AlertDialog(
             modifier = Modifier.wrapContentWidth().wrapContentHeight(),
-            title = { Text(stringResource(id = R.string.notification_permission_title)) },
-            text = { Text(stringResource(id = R.string.notification_permission_rationale)) },
+            title = { Text(stringResource(id = title)) },
+            text = { Text(stringResource(id = text)) },
             confirmButton = {
                 TextButton(
                     onClick = { showWarningDialog = false },

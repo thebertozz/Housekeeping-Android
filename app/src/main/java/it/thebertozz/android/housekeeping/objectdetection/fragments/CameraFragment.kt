@@ -116,8 +116,6 @@ class CameraFragment : Fragment(), ImageClassifierHelper.ClassifierListener {
         fragmentCameraBinding?.viewFinder?.post {
             setUpCamera()
         }
-
-        //initBottomSheetControls()
     }
 
     private fun setUpCamera() {
@@ -193,10 +191,15 @@ class CameraFragment : Fragment(), ImageClassifierHelper.ClassifierListener {
     private fun getScreenOrientation(): Int {
         val outMetrics = DisplayMetrics()
 
-        val display: Display?
+        var display: Display? = null
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
-            display = requireActivity().display
-            display?.getRealMetrics(outMetrics)
+            try {
+                display = requireActivity().display
+                display?.getRealMetrics(outMetrics)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+
         } else {
             @Suppress("DEPRECATION")
             display = requireActivity().windowManager.defaultDisplay

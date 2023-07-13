@@ -24,9 +24,9 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import it.thebertozz.android.housekeeping.R
-import it.thebertozz.android.housekeeping.utils.BasicAppBar
-import it.thebertozz.android.housekeeping.utils.NormalTextField
-import it.thebertozz.android.housekeeping.utils.SimpleButton
+import it.thebertozz.android.housekeeping.commons.BasicAppBar
+import it.thebertozz.android.housekeeping.commons.NormalTextField
+import it.thebertozz.android.housekeeping.commons.SimpleButton
 
 /**
 Classe che permette di inserire un nuovo contenitore.

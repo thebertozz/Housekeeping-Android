@@ -1,4 +1,4 @@
-package it.thebertozz.android.housekeeping.utils
+package it.thebertozz.android.housekeeping.commons
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.fillMaxWidth

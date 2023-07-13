@@ -1,6 +1,10 @@
 package it.thebertozz.android.housekeeping.screens.detail
 
 import DetailListTile
+import android.app.DatePickerDialog
+import android.os.Build
+import android.widget.DatePicker
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Box
@@ -19,17 +23,25 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.accompanist.permissions.isGranted
+import com.google.accompanist.permissions.rememberPermissionState
+import com.google.accompanist.permissions.shouldShowRationale
 import it.thebertozz.android.housekeeping.R
-import it.thebertozz.android.housekeeping.utils.AlertDialog
-import it.thebertozz.android.housekeeping.utils.BasicAppBar
-import it.thebertozz.android.housekeeping.utils.NormalTextField
-import it.thebertozz.android.housekeeping.utils.SimpleButton
+import it.thebertozz.android.housekeeping.commons.AlertDialog
+import it.thebertozz.android.housekeeping.commons.BasicAppBar
+import it.thebertozz.android.housekeeping.commons.NormalTextField
+import it.thebertozz.android.housekeeping.commons.SimpleButton
+import it.thebertozz.android.housekeeping.permissions.PermissionDialog
+import it.thebertozz.android.housekeeping.permissions.PermissionRationaleDialog
+import java.util.Calendar
 
 /**
 Classe che mostra il dettaglio di un contenitore.
@@ -45,11 +57,34 @@ fun DetailScreen(
     modifier: Modifier = Modifier,
     viewModel: DetailScreenViewModel = viewModel()
 ) {
+
+    val currentContext = LocalContext.current
+
     val detailUiState by viewModel.uiState.collectAsState()
 
     viewModel.getSelectedContainer(containerId ?: "")
 
     val heightPadding = 24.dp
+
+    //Variabili per il calendario
+    val calendar = Calendar.getInstance()
+    val currentYear = calendar.get(Calendar.YEAR)
+    val currentMonth = calendar.get(Calendar.MONTH)
+    val currentDay = calendar.get(Calendar.DAY_OF_MONTH)
+
+    val datePickerDialog = DatePickerDialog(
+        LocalContext.current,
+        { _: DatePicker, selectedYear: Int, selectedMonth: Int, selectedDay: Int ->
+            viewModel.onBestBeforeDateChange("$selectedDay/${selectedMonth+1}/$selectedYear")
+            calendar.set(Calendar.DAY_OF_MONTH, selectedDay)
+            calendar.set(Calendar.MONTH, selectedMonth)
+            calendar.set(Calendar.YEAR, selectedYear)
+        }, currentYear, currentMonth, currentDay
+    )
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        RequestNotificationPermissionDialog()
+    }
 
     Scaffold(
         topBar = { BasicAppBar(R.string.container_detail, navController = navController) }
@@ -84,9 +119,21 @@ fun DetailScreen(
                 leadingIcon = Icons.Default.Description
             )
             Box(Modifier.height(heightPadding))
+            NormalTextField(
+                readOnly = true,
+                value = detailUiState.newItemBestBeforeDate.toString(),
+                onNewValue = viewModel::onItemTypeChange,
+                placeholder = R.string.best_before_date,
+                leadingIcon = Icons.Default.Description
+            )
+            Box(Modifier.height(heightPadding))
+            SimpleButton(text = R.string.best_before_date_button, action = {
+                datePickerDialog.show()
+            })
+            Box(Modifier.height(heightPadding))
             SimpleButton(text = R.string.save) {
                 if (detailUiState.newItemName.isNotBlank() && detailUiState.newItemType.isNotBlank()) {
-                    viewModel.onSaveNewItemClicked()
+                    viewModel.onSaveNewItemClicked(currentContext, calendar)
                 }
             }
 
@@ -109,8 +156,7 @@ fun DetailScreen(
                 ) {
 
                     detailUiState.inventoryItem?.items?.forEach { singleItem ->
-                        DetailListTile(name = singleItem.name,
-                            type = singleItem.type ?: "",
+                        DetailListTile(singleItem,
                             modifier = Modifier.combinedClickable(
                                 onLongClick = {
                                     viewModel.onItemLongTap(singleItem)
@@ -131,5 +177,18 @@ fun DetailScreen(
                 viewModel.onDeleteItemDismiss()
             }, text = R.string.delete_item_confirmation)
         }
+    }
+}
+
+@RequiresApi(Build.VERSION_CODES.TIRAMISU)
+@OptIn(ExperimentalPermissionsApi::class)
+@Composable
+fun RequestNotificationPermissionDialog() {
+    val permissionState =
+        rememberPermissionState(permission = android.Manifest.permission.POST_NOTIFICATIONS)
+
+    if (!permissionState.status.isGranted) {
+        if (permissionState.status.shouldShowRationale) PermissionRationaleDialog(R.string.notification_permission_title, R.string.notification_permission_rationale)
+        else PermissionDialog(R.string.notification_permission_title, R.string.notification_permission_rationale) { permissionState.launchPermissionRequest() }
     }
 }

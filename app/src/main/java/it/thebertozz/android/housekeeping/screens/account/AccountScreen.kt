@@ -15,9 +15,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import it.thebertozz.android.housekeeping.R
-import it.thebertozz.android.housekeeping.utils.AlertDialog
-import it.thebertozz.android.housekeeping.utils.BasicAppBar
-import it.thebertozz.android.housekeeping.utils.SimpleButton
+import it.thebertozz.android.housekeeping.commons.AlertDialog
+import it.thebertozz.android.housekeeping.commons.BasicAppBar
+import it.thebertozz.android.housekeeping.commons.SimpleButton
 
 /**
 Classe che permette di visualizzare i dati utente Firebase.

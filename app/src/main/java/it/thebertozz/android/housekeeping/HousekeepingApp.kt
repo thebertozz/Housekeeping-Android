@@ -1,9 +1,6 @@
 package it.thebertozz.android.housekeeping
 
-import android.Manifest
 import android.content.res.Resources
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
@@ -38,12 +35,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.google.accompanist.permissions.ExperimentalPermissionsApi
-import com.google.accompanist.permissions.isGranted
-import com.google.accompanist.permissions.rememberPermissionState
-import com.google.accompanist.permissions.shouldShowRationale
-import it.thebertozz.android.housekeeping.utils.commons.PermissionDialog
-import it.thebertozz.android.housekeeping.utils.commons.PermissionRationaleDialog
 import it.thebertozz.android.housekeeping.managers.SnackbarManager
 import it.thebertozz.android.housekeeping.screens.account.AccountScreen
 import it.thebertozz.android.housekeeping.screens.container.NewContainerScreen
@@ -64,10 +55,6 @@ ed il grafo delle navigazioni
 @ExperimentalMaterialApi
 fun HousekeepingApp() {
     HousekeepingTheme {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            //RequestNotificationPermissionDialog()
-        }
-
         Surface(color = MaterialTheme.colors.background) {
             val appState = rememberAppState()
 
@@ -188,19 +175,5 @@ fun NavGraphBuilder.housekeepingGraph(appState: HouseKeepingAppState) {
         AccountScreen(
             navigation = { route, popUp -> appState.manageNavigation(route, popUp) }
         )
-    }
-
-}
-
-@RequiresApi(Build.VERSION_CODES.TIRAMISU)
-@OptIn(ExperimentalPermissionsApi::class)
-@Composable
-fun RequestNotificationPermissionDialog() {
-    val permissionState =
-        rememberPermissionState(permission = Manifest.permission.POST_NOTIFICATIONS)
-
-    if (!permissionState.status.isGranted) {
-        if (permissionState.status.shouldShowRationale) PermissionRationaleDialog()
-        else PermissionDialog { permissionState.launchPermissionRequest() }
     }
 }

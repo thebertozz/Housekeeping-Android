@@ -1,4 +1,4 @@
-package it.thebertozz.android.housekeeping.utils
+package it.thebertozz.android.housekeeping.commons
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -74,8 +74,9 @@ private fun PasswordTextField(
 }
 
 @Composable
-fun NormalTextField(value: String, onNewValue: (String) -> Unit, @StringRes placeholder: Int, modifier: Modifier = Modifier, leadingIcon: ImageVector) {
+fun NormalTextField(value: String, onNewValue: (String) -> Unit, @StringRes placeholder: Int, modifier: Modifier = Modifier, leadingIcon: ImageVector, readOnly: Boolean = false) {
     OutlinedTextField(
+        readOnly = readOnly,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text, capitalization = KeyboardCapitalization.Sentences),
         singleLine = true,
         modifier = modifier.fillMaxWidth().padding(horizontal = 16.dp),

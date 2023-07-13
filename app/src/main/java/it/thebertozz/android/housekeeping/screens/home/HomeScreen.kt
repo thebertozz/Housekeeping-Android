@@ -19,7 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import it.thebertozz.android.housekeeping.R
-import it.thebertozz.android.housekeeping.utils.BasicAppBar
+import it.thebertozz.android.housekeeping.commons.BasicAppBar
 import androidx.compose.material.Divider
 import androidx.compose.material.ExtendedFloatingActionButton
 import androidx.compose.material.FloatingActionButton
@@ -35,7 +35,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import it.thebertozz.android.housekeeping.objectdetection.TensorFlowActivity
-import it.thebertozz.android.housekeeping.utils.AlertDialog
+import it.thebertozz.android.housekeeping.commons.AlertDialog
 
 /**
 Classe che mostra la schermata dei contenitori inseriti, o un messaggio se non ce ne sono.

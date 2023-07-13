@@ -32,6 +32,7 @@ import it.thebertozz.android.housekeeping.R
 import it.thebertozz.android.housekeeping.databinding.FragmentCameraBinding
 import it.thebertozz.android.housekeeping.objectdetection.CategoryLabelClickListener
 import it.thebertozz.android.housekeeping.objectdetection.ImageClassifierHelper
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import org.tensorflow.lite.task.vision.classifier.Classifications
@@ -169,7 +170,7 @@ class CameraFragment : Fragment(), ImageClassifierHelper.ClassifierListener {
                 .build()
                 .also {
 
-                    lifecycleScope.launch {
+                    lifecycleScope.launch() {
                         it.setAnalyzer(cameraExecutor) { image ->
                             if (!::bitmapBuffer.isInitialized) {
                                 bitmapBuffer = Bitmap.createBitmap(

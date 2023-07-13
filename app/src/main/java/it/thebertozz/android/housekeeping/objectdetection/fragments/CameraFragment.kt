@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.os.Looper
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.Display
@@ -24,12 +25,15 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import it.thebertozz.android.housekeeping.R
 import it.thebertozz.android.housekeeping.databinding.FragmentCameraBinding
 import it.thebertozz.android.housekeeping.objectdetection.CategoryLabelClickListener
 import it.thebertozz.android.housekeeping.objectdetection.ImageClassifierHelper
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 import org.tensorflow.lite.task.vision.classifier.Classifications
 import java.util.Collections
 import java.util.concurrent.ExecutorService
@@ -164,16 +168,19 @@ class CameraFragment : Fragment(), ImageClassifierHelper.ClassifierListener {
                 .setOutputImageFormat(ImageAnalysis.OUTPUT_IMAGE_FORMAT_RGBA_8888)
                 .build()
                 .also {
-                    it.setAnalyzer(cameraExecutor) { image ->
-                        if (!::bitmapBuffer.isInitialized) {
-                            bitmapBuffer = Bitmap.createBitmap(
-                                image.width,
-                                image.height,
-                                Bitmap.Config.ARGB_8888
-                            )
-                        }
 
-                        classifyImage(image)
+                    lifecycleScope.launch {
+                        it.setAnalyzer(cameraExecutor) { image ->
+                            if (!::bitmapBuffer.isInitialized) {
+                                bitmapBuffer = Bitmap.createBitmap(
+                                    image.width,
+                                    image.height,
+                                    Bitmap.Config.ARGB_8888
+                                )
+                            }
+
+                            classifyImage(image)
+                        }
                     }
                 }
 

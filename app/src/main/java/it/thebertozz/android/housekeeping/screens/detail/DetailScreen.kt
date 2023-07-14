@@ -64,7 +64,7 @@ fun DetailScreen(
 
     viewModel.getSelectedContainer(containerId ?: "")
 
-    val heightPadding = 24.dp
+    val heightPadding = 16.dp
 
     //Variabili per il calendario
     val calendar = Calendar.getInstance()

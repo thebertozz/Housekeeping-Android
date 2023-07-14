@@ -17,6 +17,8 @@ import it.thebertozz.android.housekeeping.R
 import it.thebertozz.android.housekeeping.notifications.NotificationReceiver
 import java.util.Calendar
 
+/** Classe object per la gestione centralizzata delle notifiche*/
+
 object NotificationsManager {
 
     val TAG = "NotificationsManager"

@@ -37,7 +37,7 @@ class LoginViewModel: ViewModel() {
             return
         }
 
-        //Per la gestione errori si potrebbe anche CoroutineExceptionHandler
+        //Per la gestione errori si potrebbe usare anche CoroutineExceptionHandler
 
         viewModelScope.launch() {
             SnackbarManager.showMessage(R.string.authenticating)

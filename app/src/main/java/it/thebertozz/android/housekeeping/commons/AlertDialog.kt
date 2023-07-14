@@ -39,7 +39,7 @@ fun AlertDialog(confirmClicked: () -> Unit, @StringRes text: Int, dismissClicked
                                 openDialog.value = false
                                 confirmClicked()
                             }, colors = ButtonDefaults.buttonColors(containerColor = Color.Red)) {
-                            Text(stringResource(id = R.string.confirm))
+                            Text(stringResource(id = R.string.confirm), color = Color.White)
                         }
                     },
                     dismissButton = {
@@ -48,7 +48,7 @@ fun AlertDialog(confirmClicked: () -> Unit, @StringRes text: Int, dismissClicked
                                 openDialog.value = false
                                 dismissClicked()
                             }) {
-                            Text(stringResource(id = R.string.dismiss))
+                            Text(stringResource(id = R.string.dismiss), color = Color.White)
                         }
                     }
                 )

@@ -51,7 +51,7 @@ class SignUpViewModel: ViewModel() {
       SnackbarManager.showMessage(R.string.account_created)
       FirebaseManager.createUser(email, password) { error ->
         if (error != null) {
-          SnackbarManager.showMessage(R.string.error)
+          SnackbarManager.showMessage(R.string.signup_error)
         }
         else {
           SnackbarManager.showMessage(R.string.account_created)

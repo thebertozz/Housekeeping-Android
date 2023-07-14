@@ -12,6 +12,7 @@ import it.thebertozz.android.housekeeping.MainActivity
 import it.thebertozz.android.housekeeping.R
 import kotlin.random.Random
 
+/** Classe che estende BroadcastReceiver per la gestione della notifica schedulata */
 
 class NotificationReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {

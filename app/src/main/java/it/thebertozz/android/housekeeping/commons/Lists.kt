@@ -73,7 +73,5 @@ fun HomeListTile(name: String, description: String, type: String, items: Int, mo
             }
             Box(Modifier.height(8.dp))
         }
-//        Box(modifier = Modifier.width(8.dp))
-//        Icon(imageVector = Icons.Filled.CameraAlt, null, modifier = modifier)
     }
 }

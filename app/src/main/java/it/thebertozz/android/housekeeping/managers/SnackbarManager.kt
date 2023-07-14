@@ -29,11 +29,5 @@ sealed class SnackbarMessage {
                 is ResourceSnackbar -> resources.getString(this.message)
             }
         }
-
-        fun Throwable.toSnackbarMessage(): SnackbarMessage {
-            val message = this.message.orEmpty()
-            return if (message.isNotBlank()) StringSnackbar(message)
-            else ResourceSnackbar(R.string.error)
-        }
     }
 }

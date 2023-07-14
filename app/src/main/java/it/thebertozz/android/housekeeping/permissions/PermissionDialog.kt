@@ -20,6 +20,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import it.thebertozz.android.housekeeping.R
 
+/**
+Classe che gestisce la ui per mostrare una descrizione per la richiesta permessi
+ */
+
 @Composable
 fun PermissionDialog(@StringRes title: Int, @StringRes text: Int, onRequestPermission: () -> Unit) {
     var showWarningDialog by remember { mutableStateOf(true) }

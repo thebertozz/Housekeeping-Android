@@ -19,9 +19,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import it.thebertozz.android.housekeeping.commons.SimpleButton
 import it.thebertozz.android.housekeeping.commons.SimpleTextButton
 import it.thebertozz.android.housekeeping.commons.EmailTextField
-import it.thebertozz.android.housekeeping.commons.PasswordTextField
 import it.thebertozz.android.housekeeping.R
 import it.thebertozz.android.housekeeping.commons.BasicAppBar
+import it.thebertozz.android.housekeeping.commons.PasswordTextField
 
 /**
 Classe per il login utente.
@@ -69,7 +69,7 @@ fun LoginScreen(
 
             Box(Modifier.height(8.dp))
 
-            PasswordTextField(uiState.password, viewModel::onPasswordChange,
+            PasswordTextField(uiState.password, R.string.password_login, viewModel::onPasswordChange,
                 Modifier
                     .fillMaxWidth())
 

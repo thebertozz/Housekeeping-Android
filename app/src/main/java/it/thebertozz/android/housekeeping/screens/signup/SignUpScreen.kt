@@ -1,8 +1,10 @@
 package it.thebertozz.android.housekeeping.screens.signup
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.*
@@ -16,7 +18,6 @@ import it.thebertozz.android.housekeeping.commons.SimpleButton
 import it.thebertozz.android.housekeeping.commons.BasicAppBar
 import it.thebertozz.android.housekeeping.commons.EmailTextField
 import it.thebertozz.android.housekeeping.commons.PasswordTextField
-import it.thebertozz.android.housekeeping.commons.RepeatPasswordField
 
 /**
 Classe per la registrazione utente.
@@ -39,6 +40,7 @@ fun SignUpScreen(
     Scaffold(topBar = { BasicAppBar(R.string.create_account, navController = navController) }) { paddingValues ->
         Column(
             modifier = modifier
+                .background(color = MaterialTheme.colors.background)
               .fillMaxWidth()
               .fillMaxHeight()
               .padding(paddingValues)
@@ -49,10 +51,11 @@ fun SignUpScreen(
         ) {
             EmailTextField(uiState.email, viewModel::onEmailChange, fieldModifier)
             Box(Modifier.height(8.dp))
-            PasswordTextField(uiState.password, viewModel::onPasswordChange, fieldModifier)
+            PasswordTextField(uiState.password, R.string.password_registration, viewModel::onPasswordChange, fieldModifier)
             Box(Modifier.height(8.dp))
-            RepeatPasswordField(
+            PasswordTextField(
                 uiState.repeatPassword,
+                R.string.repeat_password,
                 viewModel::onRepeatPasswordChange,
                 fieldModifier
             )

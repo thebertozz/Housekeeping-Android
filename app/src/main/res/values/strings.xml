@@ -13,7 +13,9 @@
     <string name="add_new_item">Aggiungi un nuovo oggetto nel contenitore:</string>
 
     <string name="email">Email</string>
-    <string name="password">Password</string>
+    <string name="password_registration">Password (min. 6 caratteri)</string>
+    <string name="password_login">Password</string>
+
     <string name="repeat_password">Ripeti la password</string>
 
     <string name="login">Login</string>
@@ -21,7 +23,7 @@
     <string name="sign_up">Registrati</string>
     <string name="forgot_password">Hai dimenticato la password?</string>
     <string name="error">È stato riscontrato un errore.</string>
-    <string name="signup_error">È stato riscontrato un errore durante la registrazione. Verifica la connettività e riprova.</string>
+    <string name="signup_error">Non è possibile completare la registrazione. Verifica i dati inseriti e la connettività.</string>
     <string name="recovery_email">È stata inviata una mail per il reset della password all\'indirizzo indicato</string>
 
     <string name="error_in_splash_screen">È stato riscontrato un errore nell\'inizializzazione</string>

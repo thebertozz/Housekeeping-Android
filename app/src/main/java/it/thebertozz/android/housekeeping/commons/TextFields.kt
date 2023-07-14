@@ -35,17 +35,7 @@ fun EmailTextField(value: String, onNewValue: (String) -> Unit, modifier: Modifi
 }
 
 @Composable
-fun PasswordTextField(value: String, onNewValue: (String) -> Unit, modifier: Modifier = Modifier) {
-    PasswordTextField(value, R.string.password, onNewValue, modifier)
-}
-
-@Composable
-fun RepeatPasswordField(value: String, onNewValue: (String) -> Unit, modifier: Modifier = Modifier) {
-    PasswordTextField(value, R.string.repeat_password, onNewValue, modifier)
-}
-
-@Composable
-private fun PasswordTextField(
+fun PasswordTextField(
     value: String,
     @StringRes placeholder: Int,
     onNewValue: (String) -> Unit,
